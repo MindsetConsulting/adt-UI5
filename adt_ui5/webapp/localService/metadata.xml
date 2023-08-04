@@ -1,119 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
     <edmx:Reference Uri="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
     </edmx:Reference>
     <edmx:Reference Uri="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities" />
     </edmx:Reference>
     <edmx:Reference Uri="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication" />
     </edmx:Reference>
     <edmx:Reference Uri="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation" />
     </edmx:Reference>
     <edmx:Reference Uri="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData" />
     </edmx:Reference>
     <edmx:Reference Uri="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation" />
     </edmx:Reference>
     <edmx:Reference Uri="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics" />
     </edmx:Reference>
     <edmx:Reference Uri="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures" />
     </edmx:Reference>
     <edmx:Reference Uri="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
     </edmx:Reference>
     <edmx:DataServices m:DataServiceVersion="2.0">
         <Schema Namespace="cds_zassociate_dev_employee_def" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
             <EntityType Name="Employee_CRUDType" sap:label="Employee Data CRUD" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="Id" />
                 </Key>
-                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number"/>
-                <Property Name="Name" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40"/>
-                <Property Name="Department" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40"/>
-                <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date"/>
-                <Property Name="Role" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Char20" sap:quickinfo="Char 20"/>
-                <Property Name="Address" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40"/>
-                <Property Name="CityState" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40"/>
-                <Property Name="ZipCode" Type="Edm.String" MaxLength="16" sap:display-format="NonNegative" sap:label="Numeric field (16)" sap:quickinfo="Numeric field: Length 16"/>
-                <Property Name="Email" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40"/>
-                <Property Name="PhoneNumber" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="10 digit number"/>
-                <Property Name="Photo" Type="Edm.String" MaxLength="255" sap:display-format="UpperCase" sap:label="Char255"/>
-                <NavigationProperty Name="to_Employee" Relationship="cds_zassociate_dev_employee_def.assoc_F26743E9D0B3EDE13231F17088DF491C" FromRole="FromRole_assoc_F26743E9D0B3EDE13231F17088DF491C" ToRole="ToRole_assoc_F26743E9D0B3EDE13231F17088DF491C"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number" />
+                <Property Name="Name" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40" />
+                <Property Name="Department" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40" />
+                <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" />
+                <Property Name="Role" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Char20" sap:quickinfo="Char 20" />
+                <Property Name="Address" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40" />
+                <Property Name="CityState" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40" />
+                <Property Name="ZipCode" Type="Edm.String" MaxLength="16" sap:display-format="NonNegative" sap:label="Numeric field (16)" sap:quickinfo="Numeric field: Length 16" />
+                <Property Name="Email" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40" />
+                <Property Name="PhoneNumber" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="10 digit number" />
+                <Property Name="Photo" Type="Edm.String" MaxLength="255" sap:display-format="UpperCase" sap:label="Char255" />
+                <NavigationProperty Name="to_Employee" Relationship="cds_zassociate_dev_employee_def.assoc_F26743E9D0B3EDE13231F17088DF491C" FromRole="FromRole_assoc_F26743E9D0B3EDE13231F17088DF491C" ToRole="ToRole_assoc_F26743E9D0B3EDE13231F17088DF491C" />
             </EntityType>
             <EntityType Name="EmployeeType" sap:label="Employee Data" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="Id" />
                 </Key>
-                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number"/>
-                <Property Name="Name" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40"/>
-                <Property Name="Department" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40"/>
-                <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date"/>
-                <Property Name="Role" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Char20" sap:quickinfo="Char 20"/>
-                <Property Name="Address" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40"/>
-                <Property Name="CityState" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40"/>
-                <Property Name="ZipCode" Type="Edm.String" MaxLength="16" sap:display-format="NonNegative" sap:label="Numeric field (16)" sap:quickinfo="Numeric field: Length 16"/>
-                <Property Name="Email" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40"/>
-                <Property Name="PhoneNumber" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="10 digit number"/>
-                <Property Name="Photo" Type="Edm.String" MaxLength="255" sap:display-format="UpperCase" sap:label="Char255"/>
-                <NavigationProperty Name="to_Employee_Skills" Relationship="cds_zassociate_dev_employee_def.assoc_EB33E2442F5ACC053CECF5D8ABEFED50" FromRole="FromRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50" ToRole="ToRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number" />
+                <Property Name="Name" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40" />
+                <Property Name="Department" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40" />
+                <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" />
+                <Property Name="Role" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Char20" sap:quickinfo="Char 20" />
+                <Property Name="Address" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40" />
+                <Property Name="CityState" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40" />
+                <Property Name="ZipCode" Type="Edm.String" MaxLength="16" sap:display-format="NonNegative" sap:label="Numeric field (16)" sap:quickinfo="Numeric field: Length 16" />
+                <Property Name="Email" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Char" sap:quickinfo="Character field of length 40" />
+                <Property Name="PhoneNumber" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="10 digit number" />
+                <Property Name="Photo" Type="Edm.String" MaxLength="255" sap:display-format="UpperCase" sap:label="Char255" />
+                <NavigationProperty Name="to_Employee_Skills" Relationship="cds_zassociate_dev_employee_def.assoc_EB33E2442F5ACC053CECF5D8ABEFED50" FromRole="FromRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50" ToRole="ToRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50" />
             </EntityType>
             <EntityType Name="Employee_SkillsType" sap:label="Employee Skills Data" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="SkillId"/>
+                    <PropertyRef Name="SkillId" />
                 </Key>
-                <Property Name="SkillId" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number"/>
-                <Property Name="Name" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Char20" sap:quickinfo="Char 20"/>
-                <Property Name="Rating" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="10 digit number"/>
-                <Property Name="EmployeeId" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number"/>
+                <Property Name="SkillId" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number" />
+                <Property Name="Name" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Char20" sap:quickinfo="Char 20" />
+                <Property Name="Rating" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="10 digit number" />
+                <Property Name="EmployeeId" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number" />
             </EntityType>
             <EntityType Name="Employee_Skills_CRUDType" sap:label="Employee Skill Data CRUD" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="SkillId"/>
+                    <PropertyRef Name="SkillId" />
                 </Key>
-                <Property Name="SkillId" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number"/>
-                <Property Name="Name" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Char20" sap:quickinfo="Char 20"/>
-                <Property Name="Rating" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="10 digit number"/>
-                <Property Name="EmployeeId" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number"/>
-                <NavigationProperty Name="to_Skill" Relationship="cds_zassociate_dev_employee_def.assoc_326952C83FD0992956C9F55773EBDBE3" FromRole="FromRole_assoc_326952C83FD0992956C9F55773EBDBE3" ToRole="ToRole_assoc_326952C83FD0992956C9F55773EBDBE3"/>
+                <Property Name="SkillId" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number" />
+                <Property Name="Name" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Char20" sap:quickinfo="Char 20" />
+                <Property Name="Rating" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="10 digit number" />
+                <Property Name="EmployeeId" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Number" sap:quickinfo="Four-digit number" />
+                <NavigationProperty Name="to_Skill" Relationship="cds_zassociate_dev_employee_def.assoc_326952C83FD0992956C9F55773EBDBE3" FromRole="FromRole_assoc_326952C83FD0992956C9F55773EBDBE3" ToRole="ToRole_assoc_326952C83FD0992956C9F55773EBDBE3" />
             </EntityType>
             <Association Name="assoc_EB33E2442F5ACC053CECF5D8ABEFED50" sap:content-version="1">
-                <End Type="cds_zassociate_dev_employee_def.EmployeeType" Multiplicity="1" Role="FromRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50"/>
-                <End Type="cds_zassociate_dev_employee_def.Employee_SkillsType" Multiplicity="*" Role="ToRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50"/>
+                <End Type="cds_zassociate_dev_employee_def.EmployeeType" Multiplicity="1" Role="FromRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50" />
+                <End Type="cds_zassociate_dev_employee_def.Employee_SkillsType" Multiplicity="*" Role="ToRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50" />
             </Association>
             <Association Name="assoc_326952C83FD0992956C9F55773EBDBE3" sap:content-version="1">
-                <End Type="cds_zassociate_dev_employee_def.Employee_Skills_CRUDType" Multiplicity="1" Role="FromRole_assoc_326952C83FD0992956C9F55773EBDBE3"/>
-                <End Type="cds_zassociate_dev_employee_def.Employee_SkillsType" Multiplicity="0..1" Role="ToRole_assoc_326952C83FD0992956C9F55773EBDBE3"/>
+                <End Type="cds_zassociate_dev_employee_def.Employee_Skills_CRUDType" Multiplicity="1" Role="FromRole_assoc_326952C83FD0992956C9F55773EBDBE3" />
+                <End Type="cds_zassociate_dev_employee_def.Employee_SkillsType" Multiplicity="0..1" Role="ToRole_assoc_326952C83FD0992956C9F55773EBDBE3" />
             </Association>
             <Association Name="assoc_F26743E9D0B3EDE13231F17088DF491C" sap:content-version="1">
-                <End Type="cds_zassociate_dev_employee_def.Employee_CRUDType" Multiplicity="1" Role="FromRole_assoc_F26743E9D0B3EDE13231F17088DF491C"/>
-                <End Type="cds_zassociate_dev_employee_def.EmployeeType" Multiplicity="0..1" Role="ToRole_assoc_F26743E9D0B3EDE13231F17088DF491C"/>
+                <End Type="cds_zassociate_dev_employee_def.Employee_CRUDType" Multiplicity="1" Role="FromRole_assoc_F26743E9D0B3EDE13231F17088DF491C" />
+                <End Type="cds_zassociate_dev_employee_def.EmployeeType" Multiplicity="0..1" Role="ToRole_assoc_F26743E9D0B3EDE13231F17088DF491C" />
             </Association>
             <EntityContainer Name="cds_zassociate_dev_employee_def_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
-                <EntitySet Name="Employee_CRUD" EntityType="cds_zassociate_dev_employee_def.Employee_CRUDType" sap:content-version="1"/>
-                <EntitySet Name="Employee" EntityType="cds_zassociate_dev_employee_def.EmployeeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
-                <EntitySet Name="Employee_Skills" EntityType="cds_zassociate_dev_employee_def.Employee_SkillsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
-                <EntitySet Name="Employee_Skills_CRUD" EntityType="cds_zassociate_dev_employee_def.Employee_Skills_CRUDType" sap:content-version="1"/>
+                <EntitySet Name="Employee_CRUD" EntityType="cds_zassociate_dev_employee_def.Employee_CRUDType" sap:content-version="1" />
+                <EntitySet Name="Employee" EntityType="cds_zassociate_dev_employee_def.EmployeeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1" />
+                <EntitySet Name="Employee_Skills" EntityType="cds_zassociate_dev_employee_def.Employee_SkillsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1" />
+                <EntitySet Name="Employee_Skills_CRUD" EntityType="cds_zassociate_dev_employee_def.Employee_Skills_CRUDType" sap:content-version="1" />
                 <AssociationSet Name="assoc_EB33E2442F5ACC053CECF5D8ABEFED50" Association="cds_zassociate_dev_employee_def.assoc_EB33E2442F5ACC053CECF5D8ABEFED50" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-                    <End EntitySet="Employee" Role="FromRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50"/>
-                    <End EntitySet="Employee_Skills" Role="ToRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50"/>
+                    <End EntitySet="Employee" Role="FromRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50" />
+                    <End EntitySet="Employee_Skills" Role="ToRole_assoc_EB33E2442F5ACC053CECF5D8ABEFED50" />
                 </AssociationSet>
                 <AssociationSet Name="assoc_F26743E9D0B3EDE13231F17088DF491C" Association="cds_zassociate_dev_employee_def.assoc_F26743E9D0B3EDE13231F17088DF491C" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-                    <End EntitySet="Employee_CRUD" Role="FromRole_assoc_F26743E9D0B3EDE13231F17088DF491C"/>
-                    <End EntitySet="Employee" Role="ToRole_assoc_F26743E9D0B3EDE13231F17088DF491C"/>
+                    <End EntitySet="Employee_CRUD" Role="FromRole_assoc_F26743E9D0B3EDE13231F17088DF491C" />
+                    <End EntitySet="Employee" Role="ToRole_assoc_F26743E9D0B3EDE13231F17088DF491C" />
                 </AssociationSet>
                 <AssociationSet Name="assoc_326952C83FD0992956C9F55773EBDBE3" Association="cds_zassociate_dev_employee_def.assoc_326952C83FD0992956C9F55773EBDBE3" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-                    <End EntitySet="Employee_Skills_CRUD" Role="FromRole_assoc_326952C83FD0992956C9F55773EBDBE3"/>
-                    <End EntitySet="Employee_Skills" Role="ToRole_assoc_326952C83FD0992956C9F55773EBDBE3"/>
+                    <End EntitySet="Employee_Skills_CRUD" Role="FromRole_assoc_326952C83FD0992956C9F55773EBDBE3" />
+                    <End EntitySet="Employee_Skills" Role="ToRole_assoc_326952C83FD0992956C9F55773EBDBE3" />
                 </AssociationSet>
             </EntityContainer>
             <Annotations Target="cds_zassociate_dev_employee_def.cds_zassociate_dev_employee_def_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true" />
                 <Annotation Term="Aggregation.ApplySupported">
                     <Record>
                         <PropertyValue Property="Transformations">
@@ -123,12 +123,12 @@
                                 <String>filter</String>
                             </Collection>
                         </PropertyValue>
-                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                        <PropertyValue Property="Rollup" EnumMember="None" />
                     </Record>
                 </Annotation>
             </Annotations>
-            <atom:link rel="self" href="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/sap/ZASSOCIATE_DEV_EMP_API/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
-            <atom:link rel="latest-version" href="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/sap/ZASSOCIATE_DEV_EMP_API/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="self" href="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/sap/ZASSOCIATE_DEV_EMP_API/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+            <atom:link rel="latest-version" href="https://S4HANA2020.MINDSETCONSULTING.COM:44300/sap/opu/odata/sap/ZASSOCIATE_DEV_EMP_API/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

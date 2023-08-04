@@ -2,7 +2,9 @@
     controllerName="mindset.adt.ui5.adtui5.controller.EmployeeList"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:core="sap.ui.core">
+    xmlns:core="sap.ui.core"
+    id="EmployeeList"
+    >
     <Table id="_IDGenTable1" items="{/Employees}">
         <columns>
             <Column id="_IDGenColumn1">

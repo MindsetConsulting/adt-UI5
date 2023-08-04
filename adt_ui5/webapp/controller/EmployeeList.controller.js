@@ -15,7 +15,7 @@ sap.ui.define([
                 // this.getView().setModel(ViewModel);
 
                 component = this.getOwnerComponent();
-                controller.getRouter().getRoute("RouteEmployeeList").attachPatternMatched(this._onRouteMatched, this);
+                controller.getRouter().getRoute("EmployeeList").attachPatternMatched(this._onRouteMatched, this);
 
                 var oData = {
                     Employees: [
