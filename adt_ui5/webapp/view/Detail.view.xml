@@ -1,10 +1,10 @@
 <mvc:View
-    controllerName="mindset.adt.ui5.adtui5.controller.EmployeeList"
+    controllerName="mindset.adt.ui5.adtui5.controller.Detail"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
     
-    id="EmployeeList"
+    id="Detail"
     >
     <Table id="_IDGenTable1" items="{/Employees}">
         <columns>
@@ -22,7 +22,7 @@
             </Column>
         </columns>
         <items>
-            <ColumnListItem id="_IDGenColumnListItem1" type="Navigation" press=".onPress">
+            <ColumnListItem id="_IDGenColumnListItem1">
                 <cells>
                     <Text id="_IDGenText5" text="{Name}"/>
                     <Text id="_IDGenText6" text="{Department}"/>

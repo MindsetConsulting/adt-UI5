@@ -9,13 +9,15 @@ sap.ui.define([
     function (Controller, JSONModel) {
         "use strict";
         var controller, component;
-        return Controller.extend("mindset.adt.ui5.adtui5.controller.EmployeeList", {
+        return Controller.extend("mindset.adt.ui5.adtui5.controller.Detail", {
             onInit: function () {
                 controller = this;
 
                 // this.getView().setModel(ViewModel);
 
                 component = this.getOwnerComponent();
+                this.getRouter().getRoute("Detail").attachPatternMatched(this._onObjectMatched, this);
+
 
                 var oData = {
                     Employees: [
@@ -63,10 +65,6 @@ sap.ui.define([
 
                 var oModel = new JSONModel(oData);
                 this.getView().setModel(oModel);
-            },
-            onPress: function (oEvent) {
-                // The source is the list item that got pressed
-                this._showObject(oEvent.getSource());
             }
         });
     });

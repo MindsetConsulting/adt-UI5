@@ -96,8 +96,17 @@
         {
           "name": "EmployeeList",
           "pattern": "EmployeeList",
+          "viewLevel":1,
           "target": [
             "EmployeeList"
+          ]
+        },
+        {
+          "name": "Detail",
+          "pattern": "Detail/{Id}",
+          "viewLevel": 2,
+          "target": [
+            "Detail"
           ]
         }
       ],
@@ -108,14 +117,21 @@
           "clearControlAggregation": false,
           "viewId": "EmployeeList",
           "viewName": "EmployeeList"
+        },
+        "Detail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Detail",
+          "viewName": "Detail"
         }
       }
     },
     "rootView": {
-      "viewName": "mindset.adt.ui5.adtui5.view.App",
+      "viewName": "mindset.adt.ui5.adtui5.view.EmployeeList",
       "type": "XML",
       "async": true,
-      "id": "App"
+      "id": "EmployeeList"
     }
   }
 }
