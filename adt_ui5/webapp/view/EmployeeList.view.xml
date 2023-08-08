@@ -6,7 +6,13 @@
     
     id="EmployeeList"
     >
-    <Table id="_IDGenTable1" items="{/Employees}">
+    <Table id="_IDGenTable1" items="{
+                    path: '/Employee',
+                    sorter: {
+                        path: 'Id',
+                        descending: false
+                    }
+                }">
         <columns>
             <Column id="_IDGenColumn1">
                 <Text id="_IDGenText1" text="Name"/>
