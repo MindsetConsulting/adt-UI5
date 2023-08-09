@@ -84,7 +84,7 @@
               </items>
             </Table>
             <Toolbar id="_IDGenToolbar1">
-              <Button id="_IDGenButton4" icon="sap-icon://clipboard" text="Assign Skill" press="onAssignSkillPress" />
+              <Button id="_IDGenButton4" icon="sap-icon://activity-2" text="Assign Skill" press="onAssignSkillPress" />
             </Toolbar>
           </uxap:ObjectPageSubSection>
         </uxap:subSections>
