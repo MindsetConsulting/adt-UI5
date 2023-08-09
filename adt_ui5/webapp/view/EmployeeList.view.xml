@@ -2,7 +2,8 @@
     controllerName="mindset.adt.ui5.adtui5.controller.EmployeeList"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:semantic="sap.f.semantic">
+    xmlns:semantic="sap.f.semantic"
+    id="EmployeeList">
 
     <semantic:SemanticPage
         id="page"

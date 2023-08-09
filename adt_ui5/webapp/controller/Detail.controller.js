@@ -31,6 +31,10 @@ sap.ui.define([
             _onObjectMatched: function (oEvent) {
                 var sObjectId = oEvent.getParameter("arguments").employeeId;
                 // this._bindView("/Employee" + sObjectId);
+            },
+            onNavBack: function () {
+                // eslint-disable-next-line sap-no-history-manipulation
+                history.go(-1);
             }
         });
     });

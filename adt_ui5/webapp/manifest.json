@@ -90,13 +90,14 @@
         "viewPath": "mindset.adt.ui5.adtui5.view",
         "controlAggregation": "pages",
         "controlId": "app",
-        "clearControlAggregation": true
+        "clearControlAggregation": true,
+        "targetAggregation": "pages"
       },
       "routes": [
         {
           "name": "EmployeeList",
-          "pattern": "EmployeeList",
-          "viewLevel":1,
+          "pattern": "",
+          "viewLevel": 1,
           "target": [
             "EmployeeList"
           ]
@@ -131,7 +132,7 @@
       "viewName": "mindset.adt.ui5.adtui5.view.App",
       "type": "XML",
       "async": true,
-      "id": "App"
+      "id": "app"
     }
   }
 }

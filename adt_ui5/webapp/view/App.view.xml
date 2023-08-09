@@ -7,7 +7,9 @@
 		<App id="app">
 			<pages>
 				<Page id="page">
-					<content></content>
+					<content>
+						 <mvc:XMLView id="_IDGenXMLView1" viewName="mindset.adt.ui5.adtui5.view.EmployeeList" />
+					</content>
 				</Page>
 			</pages>
 		</App>
