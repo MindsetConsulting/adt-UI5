@@ -14,23 +14,35 @@ sap.ui.define([
         return Controller.extend("mindset.adt.ui5.adtui5.controller.Detail", {
             onInit: function () {
                 controller = this;
-
-                // this.getView().setModel(ViewModel);
-
                 component = this.getOwnerComponent();
                 
+                var oViewModel = new JSONModel({
+                    editMode: false,
+                    busy: true,
+                    delay: 0,
+                });
                 this.getRouter().getRoute("Detail").attachPatternMatched(this._onObjectMatched, this);
-                
+                this.oView.setModel(oViewModel, "objectView");
 
-                // var oModel = new JSONModel(oData);
-                // this.getView().setModel(oModel);
             }, 
+            _bindView: function (sObjectPath) {
+                var oViewModel = this.oView.getModel("objectView");
+
+                this.getView().bindElement({
+                    path: sObjectPath,
+                    events: {
+                        dataReceived: function () {
+                            oViewModel.setProperty("/busy", false);
+                        }
+                    }
+                });
+            },
             getRouter: function () {
                 return UIComponent.getRouterFor(this);
             },
             _onObjectMatched: function (oEvent) {
                 var sObjectId = oEvent.getParameter("arguments").employeeId;
-                // this._bindView("/Employee" + sObjectId);
+                this._bindView("/Employee" + sObjectId);
             },
             onNavBack: function () {
                 // eslint-disable-next-line sap-no-history-manipulation

@@ -22,9 +22,9 @@
               backgroundColor="Transparent"
               press="onPress"/>
             <VBox id="_IDGenVBox2">
-              <ObjectStatus id="_IDGenObjectStatus1" title="Department" text="Human Resources" />
-              <ObjectStatus id="_IDGenObjectStatus2" title="Role" text="Manager" />
-              <ObjectStatus id="_IDGenObjectStatus3" title="Start Date" text="2022-01-15" />
+              <ObjectStatus id="_IDGenObjectStatus1" title="Department" text="{Department}" />
+              <ObjectStatus id="_IDGenObjectStatus2" title="Role" text="{Role}" />
+              <ObjectStatus id="_IDGenObjectStatus3" title="Start Date" text="{StartDate}" />
             </VBox>
           </HBox>
         </uxap:headerContent>
