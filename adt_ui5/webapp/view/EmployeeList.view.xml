@@ -65,7 +65,8 @@
                 </columns>
 
                 <items>
-                    <ColumnListItem id="_IDGenColumnListItem1">
+                    <ColumnListItem id="_IDGenColumnListItem1" 
+                    type="Navigation" press=".onPress">
               <cells>
                 <Text id="_IDGenText6" text="{Name}" />
                 <Text id="_IDGenText7" text="{Department}" />
@@ -76,10 +77,6 @@
                 </items>
             </Table>
         </semantic:content>
-
-        <semantic:sendEmailAction>
-            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
-        </semantic:sendEmailAction>
 
     </semantic:SemanticPage>
 

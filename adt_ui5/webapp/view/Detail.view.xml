@@ -1,35 +1,94 @@
 <mvc:View
-    controllerName="mindset.adt.ui5.adtui5.controller.Detail"
-    xmlns="sap.m"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns:core="sap.ui.core"
-    
-    id="Detail"
-    >
-    <Table id="_IDGenTable1" items="{/Employees}">
-        <columns>
-            <Column id="_IDGenColumn1">
-                <Text id="_IDGenText1" text="Name"/>
-            </Column>
-            <Column id="_IDGenColumn2">
-                <Text id="_IDGenText2" text="Department"/>
-            </Column>
-            <Column id="_IDGenColumn3">
-                <Text id="_IDGenText3" text="Start Date"/>
-            </Column>
-            <Column id="_IDGenColumn4">
-                <Text id="_IDGenText4" text="Role"/>
-            </Column>
-        </columns>
-        <items>
-            <ColumnListItem id="_IDGenColumnListItem1">
-                <cells>
-                    <Text id="_IDGenText5" text="{Name}"/>
-                    <Text id="_IDGenText6" text="{Department}"/>
-                    <Text id="_IDGenText7" text="{StartDate}"/>
-                    <Text id="_IDGenText8" text="{Role}"/>
-                </cells>
-            </ColumnListItem>
-        </items>
-    </Table>
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:uxap="sap.uxap"
+  controllerName="mindset.adt.ui5.adtui5.controller.Detail"
+  id="Detail">
+
+  <uxap:ObjectPageLayout id="_IDGenObjectPageLayout1">
+    <uxap:headerTitle>
+      <uxap:ObjectPageHeader id="_IDGenObjectPageHeader1">
+        <uxap:actions>
+         <Button id="_IDGenButton5" icon="sap-icon://edit" text="Edit" press="onEditPress" />
+        </uxap:actions>
+
+        </uxap:ObjectPageHeader>
+    </uxap:headerTitle>
+         <uxap:headerContent>
+          <HBox id="_IDGenHBox1">
+            <Avatar id="_IDGenAvatar1"
+              displaySize="XL"
+              backgroundColor="Transparent"
+              press="onPress"/>
+            <VBox id="_IDGenVBox2">
+              <ObjectStatus id="_IDGenObjectStatus1" title="Department" text="Human Resources" />
+              <ObjectStatus id="_IDGenObjectStatus2" title="Role" text="Manager" />
+              <ObjectStatus id="_IDGenObjectStatus3" title="Start Date" text="2022-01-15" />
+            </VBox>
+          </HBox>
+        </uxap:headerContent>
+
+
+    <uxap:sections>
+      <uxap:ObjectPageSection id="_IDGenObjectPageSection1" title="Home">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection1">
+              <ObjectStatus id="_IDGenObjectStatus4" title="Work Details" text="Human Resources" />
+              <ObjectStatus id="_IDGenObjectStatus5" title="Role" text="Manager" />
+              <ObjectStatus id="_IDGenObjectStatus6" title="Start Date" text="2022-01-15" />
+          </uxap:ObjectPageSubSection>
+          <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection2">
+              <ObjectStatus id="_IDGenObjectStatus7" title="Personal Details" text="123 Main St" />
+              <ObjectStatus id="_IDGenObjectStatus8" title="City/State" text="Anytown, USA" />
+              <ObjectStatus id="_IDGenObjectStatus9" title="Zip" text="12345" />
+          </uxap:ObjectPageSubSection>
+          <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection3">
+              <ObjectStatus id="_IDGenObjectStatus10" title="Email" text="john.doe@example.com" />
+              <ObjectStatus id="_IDGenObjectStatus11" title="Phone Number" text="+1 123-456-7890" />
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+
+      <uxap:ObjectPageSection id="_IDGenObjectPageSection2" title="Skills">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection4">
+              <Table id="_IDGenTable1">
+                <columns>
+                  <Column id="_IDGenColumn1">
+                    <Text id="_IDGenText1" text="Skill" />
+                  </Column>
+                  <Column id="_IDGenColumn2">
+                    <Text id="_IDGenText2" text="Experience Level" />
+                  </Column>
+                  <Column id="_IDGenColumn3">
+                    <!-- No title needed for the third column -->
+                  </Column>
+                </columns>
+                <items>
+                  <ColumnListItem id="_IDGenColumnListItem1">
+                    <cells>
+                      <Text id="_IDGenText3" text="Project Management" />
+                      <RatingIndicator id="_IDGenRatingIndicator1" value="4" />
+                      <Button id="_IDGenButton2" icon="sap-icon://delete" press="onDeleteSkillPress" />
+                    </cells>
+                  </ColumnListItem>
+                  <ColumnListItem id="_IDGenColumnListItem2">
+                    <cells>
+                      <Text id="_IDGenText4" text="Communication" />
+                      <RatingIndicator id="_IDGenRatingIndicator2" value="5" />
+                      <Button id="_IDGenButton3" icon="sap-icon://delete" press="onDeleteSkillPress" />
+                    </cells>
+                  </ColumnListItem>
+                  <!-- Add more items here -->
+                </items>
+              </Table>
+              <Toolbar id="_IDGenToolbar1">
+                <Button id="_IDGenButton4" icon="sap-icon://clipboard" text="Assign Skill" press="onAssignSkillPress" />
+              </Toolbar>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+    </uxap:sections>
+  </uxap:ObjectPageLayout>
 </mvc:View>

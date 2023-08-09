@@ -90,7 +90,7 @@
         "viewPath": "mindset.adt.ui5.adtui5.view",
         "controlAggregation": "pages",
         "controlId": "app",
-        "clearControlAggregation": false
+        "clearControlAggregation": true
       },
       "routes": [
         {
@@ -103,7 +103,7 @@
         },
         {
           "name": "Detail",
-          "pattern": "Detail/{Id}",
+          "pattern": "Detail/{employeeId}",
           "viewLevel": 2,
           "target": [
             "Detail"
@@ -128,10 +128,10 @@
       }
     },
     "rootView": {
-      "viewName": "mindset.adt.ui5.adtui5.view.EmployeeList",
+      "viewName": "mindset.adt.ui5.adtui5.view.App",
       "type": "XML",
       "async": true,
-      "id": "EmployeeList"
+      "id": "App"
     }
   }
 }
