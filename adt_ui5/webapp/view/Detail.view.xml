@@ -55,6 +55,15 @@
         <uxap:subSections>
           <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection4">
             <Table id="_IDGenTable1">
+              <headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Products" level="H2"/>
+					<ToolbarSpacer />
+					  <Button id="_IDGenButton4" icon="sap-icon://activity-2" text="Assign Skill" press="onAssignSkillPress" />
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
               <columns>
                 <Column id="_IDGenColumn1">
                   <Text id="_IDGenText1" text="Skill" />
@@ -83,9 +92,6 @@
                 <!-- Add more items here -->
               </items>
             </Table>
-            <Toolbar id="_IDGenToolbar1">
-              <Button id="_IDGenButton4" icon="sap-icon://activity-2" text="Assign Skill" press="onAssignSkillPress" />
-            </Toolbar>
           </uxap:ObjectPageSubSection>
         </uxap:subSections>
       </uxap:ObjectPageSection>
