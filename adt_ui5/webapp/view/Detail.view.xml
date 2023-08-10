@@ -54,16 +54,22 @@
       <uxap:ObjectPageSection id="_IDGenObjectPageSection2" title="Skills">
         <uxap:subSections>
           <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection4">
-            <Table id="_IDGenTable1">
+            <Table id="_IDGenTable1" 
+                    items="{
+                    path: '/Employee_Skills_CRUD',
+                    sorter: {
+                        path: 'Name',
+                        descending: true
+                    }
+                    }">
               <headerToolbar>
-			<OverflowToolbar>
-				<content>
-					<Title text="Products" level="H2"/>
-					<ToolbarSpacer />
-					  <Button id="_IDGenButton4" icon="sap-icon://activity-2" text="Assign Skill" press="onAssignSkillPress" />
-				</content>
-			</OverflowToolbar>
-		</headerToolbar>
+                <OverflowToolbar id="_IDGenTB1">
+                  <content>
+                    <ToolbarSpacer id="_IDGenTBS1"/>
+                    <Button id="_IDGenButton4" icon="sap-icon://activity-2" text="Assign Skill" press="onAssignSkillPress" />
+                  </content>
+                </OverflowToolbar>
+              </headerToolbar>
               <columns>
                 <Column id="_IDGenColumn1">
                   <Text id="_IDGenText1" text="Skill" />
@@ -77,19 +83,11 @@
               <items>
                 <ColumnListItem id="_IDGenColumnListItem1">
                   <cells>
-                    <Text id="_IDGenText3" text="Project Management" />
-                    <RatingIndicator id="_IDGenRatingIndicator1" value="4" />
+                    <Text id="_IDGenText3" text="{Name}" />
+                    <RatingIndicator id="_IDGenRatingIndicator1" value="{Rating}" />
                     <Button id="_IDGenButton2" icon="sap-icon://delete" press="onDeleteSkillPress" />
                   </cells>
                 </ColumnListItem>
-                <ColumnListItem id="_IDGenColumnListItem2">
-                  <cells>
-                    <Text id="_IDGenText4" text="Communication" />
-                    <RatingIndicator id="_IDGenRatingIndicator2" value="5" />
-                    <Button id="_IDGenButton3" icon="sap-icon://delete" press="onDeleteSkillPress" />
-                  </cells>
-                </ColumnListItem>
-                <!-- Add more items here -->
               </items>
             </Table>
           </uxap:ObjectPageSubSection>
