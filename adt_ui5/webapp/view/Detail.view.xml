@@ -7,7 +7,9 @@
     <uxap:headerTitle>
       <uxap:ObjectPageHeader objectTitle="{Name}" id="_IDGenObjectPageHeader1">
         <uxap:actions>
-          <Button id="_IDGenButton5" icon="sap-icon://edit" text="Edit" press="onEditPress" />
+          <Button id="_IDGenButton5" icon="sap-icon://edit" text="Edit" press="onEditPress" visible="{= ${viewModel>/editMode} ? false : true }"/>
+          <Button id="_IDGenButton6" icon="sap-icon://save" text="Save" type="Emphasized" press="onSavePress" visible="{= ${viewModel>/editMode} ? true : false }"/>
+
         </uxap:actions>
 
       </uxap:ObjectPageHeader>
@@ -54,14 +56,40 @@
       <uxap:ObjectPageSection id="_IDGenObjectPageSection2" title="Skills">
         <uxap:subSections>
           <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection4">
-            <Table id="_IDGenTable1" 
-                    items="{
+            <Table id="_IDGenTable1" items="{
+                      path: '/Employee_Skills_CRUD',
+                    filters: [{ 
+                    path: 'EmployeeId', 
+                    operator: 'EQ', 
+                    value1: '1'
+                    }],
+                    sorter: {
+                      path: 'Name',
+                      descending: true
+                    }
+                  }">
+
+              <!-- working: items="{
                     path: '/Employee_Skills_CRUD',
+                    FIXME: (filter not working) 
+                    filters: [{ 
+                    path: 'EmployeeId', 
+                    operator: 'EQ', 
+                    value1: '{EmployeeId}' 
+                    }],
                     sorter: {
                         path: 'Name',
                         descending: true
                     }
-                    }">
+                    }" 
+                  FIXME: does not work items="{
+                                path : 'Employee_Skills_CRUD',
+                                parameters: {
+                                    expand: 'Employee_Skills'
+                                }
+                                }"
+                  -->
+
               <headerToolbar>
                 <OverflowToolbar id="_IDGenTB1">
                   <content>
@@ -84,7 +112,7 @@
                 <ColumnListItem id="_IDGenColumnListItem1">
                   <cells>
                     <Text id="_IDGenText3" text="{Name}" />
-                    <RatingIndicator id="_IDGenRatingIndicator1" value="{Rating}" />
+                    <RatingIndicator id="_IDGenRatingIndicator1" value="{Rating}" editable="{= ${viewModel>/editMode} ? true : false }"/>
                     <Button id="_IDGenButton2" icon="sap-icon://delete" press="onDeleteSkillPress" />
                   </cells>
                 </ColumnListItem>
