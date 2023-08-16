@@ -34,5 +34,25 @@ sap.ui.define([
             getRouter: function () {
                 return UIComponent.getRouterFor(this);
             },
+
+            onSelectionChange: function () {
+                var oTable = this.byId("table");
+                var aSelectedItems = oTable.getSelectedItems();
+                var oViewModel = this.getView().getModel("viewModel");
+                console.log('in onSelectionChange');
+
+                if (oViewModel) {
+                    oViewModel.setProperty("/selectedItemsCount", aSelectedItems.length);
+                }
+            
+            },
+
+            onDeleteEmployeePress: function () {
+                console.log('in delete');
+                var oTable = this.byId("table");
+                var aSelectedItems = oTable.getSelectedItems();
+
+                // ... (your delete logic here) ...
+            }
         });
     });

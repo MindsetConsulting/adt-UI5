@@ -16,17 +16,21 @@
                         path: 'Id',
                         descending: false
                     }
-                }" updateFinished=".onUpdateFinished">
+                }" selectionChange=".onSelectionChange">
 
                 <headerToolbar>
                     <OverflowToolbar id="_IDGenOverflowToolbar1">
                         <Title id="tableHeader" text="Employee Table" level="H3"/>
                         <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                        <SearchField id="searchField" tooltip="{i18n>searchTooltip}" search=".onSearch">
-                            <layoutData>
-                                <OverflowToolbarLayoutData id="_IDGenOverflowToolbarLayoutData1" maxWidth="200px" priority="NeverOverflow"/>
-                            </layoutData>
-                        </SearchField>
+                        
+                        <!-- Add Employee Button -->
+                        <Button id="_IDGenButtonAddEmployee" icon="sap-icon://add" text="Add Employee" press=".onAddEmployeePress" />
+
+                        <!-- Delete Employee Button -->
+                        <Button id="_IDGenButtonDeleteEmployee" icon="sap-icon://delete" text="Delete Employee" press=".onDeleteEmployeePress" enabled="{viewModel>/selectedItemsCount > 0}"/>
+
+                        <!-- Skills List Button -->
+                        <Button id="_IDGenButtonSkillsList" icon="sap-icon://activity-items" text="Skills List" type="Emphasized" press=".onSkillsListPress" />
                     </OverflowToolbar>
                 </headerToolbar>
 
