@@ -10,10 +10,10 @@
             </VBox>
         </content>
         <beginButton>
-            <Button id="buttonConfirmAddEmployee" text="Add" press=".onAddEmployeeDialogPress" />
+            <Button id="buttonConfirmAddEmployee" icon="sap-icon://add" text="Add" press=".onAddEmployeeDialogPress" />
         </beginButton>
         <endButton>
-            <Button id="buttonCancelAddEmployee" text="Cancel" press=".onCancelAddEmployeeDialogPress" />
+            <Button id="buttonCancelAddEmployee" icon="sap-icon://cancel" text="Cancel" press=".onCancelAddEmployeeDialogPress" />
         </endButton>
     </Dialog>
 </core:FragmentDefinition>
