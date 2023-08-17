@@ -24,6 +24,9 @@ sap.ui.define([
 
                 });
                 this.oView.setModel(oViewModel, "viewModel");
+                // Dialog instantiation
+                this._oDialog = sap.ui.xmlfragment(this.getView().getId(), "mindset.adt.ui5.adtui5.view.fragments.AddEmployeeDialog", this);
+                this.getView().addDependent(this._oDialog);
 
             },
             onPress: function (oEvent) {
@@ -70,6 +73,13 @@ sap.ui.define([
                 });
 
                 oTable.removeSelections();
+            },
+            onAddEmployeePress: function () {
+                this._oDialog.open();
+            },
+            onCancelAddEmployeeDialogPress: function () {
+                this._oDialog.close();
+                // this._oDialog.destroy();
             }
         });
     });

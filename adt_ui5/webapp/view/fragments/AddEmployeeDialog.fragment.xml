@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog id="dialogAddEmployee" title="Add Employee" contentWidth="300px" verticalScrolling="None">
+        <content>
+            <VBox id="dialogVBox">
+                <Input id="inputName" value="{viewModel>/newEmployee/Name}" placeholder="Employee Name" />
+                <Input id="inputDepartment" value="{viewModel>/newEmployee/Department}" placeholder="Department" />
+                <DatePicker id="datePickerStartDate" value="{viewModel>/newEmployee/StartDate}" placeholder="Start Date" />
+                <Input id="inputRole" value="{viewModel>/newEmployee/Role}" placeholder="Role" />
+            </VBox>
+        </content>
+        <beginButton>
+            <Button id="buttonConfirmAddEmployee" text="Add" press=".onAddEmployeeDialogPress" />
+        </beginButton>
+        <endButton>
+            <Button id="buttonCancelAddEmployee" text="Cancel" press=".onCancelAddEmployeeDialogPress" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

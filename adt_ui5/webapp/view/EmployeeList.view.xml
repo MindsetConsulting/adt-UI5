@@ -10,30 +10,27 @@
         </semantic:titleHeading>
 
         <semantic:content>
-            <Table 
-                id="table" width="auto" mode="MultiSelect" items="{
-                    path: '/Employee',
-                    sorter: {
-                        path: 'Id',
-                        descending: false
-                    }
-                }" 
-                selectionChange=".onSelectionChange"
-                delete=".onDelete">
+            <Table id="table" width="auto" mode="MultiSelect" items="{
+            path: '/Employee',
+            sorter: {
+                path: 'Id',
+                descending: false
+            }
+        }" selectionChange=".onSelectionChange" delete=".onDelete">
 
                 <headerToolbar>
-                    <OverflowToolbar id="_IDGenOverflowToolbar1">
+                    <OverflowToolbar id="tableHeaderToolbar">
                         <Title id="tableHeader" text="Employee Table" level="H3"/>
-                        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                        
+                        <ToolbarSpacer id="tableHeaderSpacer" />
+
                         <!-- Add Employee Button -->
-                        <Button id="_IDGenButtonAddEmployee" icon="sap-icon://add" text="Add Employee" press=".onAddEmployeePress" />
+                        <Button id="buttonAddEmployee" icon="sap-icon://add" text="Add Employee" press=".onAddEmployeePress" />
 
                         <!-- Delete Employee Button -->
-                        <Button id="_IDGenButtonDeleteEmployee" icon="sap-icon://delete" text="Delete Selected" press=".onDeleteEmployeePress" enabled="{= ${viewModel>/selectedItemsCount} > 0}"/>
+                        <Button id="buttonDeleteEmployee" icon="sap-icon://delete" text="Delete Selected" press=".onDeleteEmployeePress" enabled="{= ${viewModel>/selectedItemsCount} > 0}"/>
 
                         <!-- Skills List Button -->
-                        <Button id="_IDGenButtonSkillsList" icon="sap-icon://activity-items" text="Skills List" type="Emphasized" press=".onSkillsListPress" />
+                        <Button id="buttonSkillsList" icon="sap-icon://activity-items" text="Skills List" type="Emphasized" press=".onSkillsListPress" />
                     </OverflowToolbar>
                 </headerToolbar>
 
@@ -63,8 +60,9 @@
                     </ColumnListItem>
                 </items>
             </Table>
+            
         </semantic:content>
-
+        
     </semantic:SemanticPage>
 
 </mvc:View>
