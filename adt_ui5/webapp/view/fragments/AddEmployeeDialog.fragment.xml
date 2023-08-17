@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core">
-    <Dialog id="dialogAddEmployee" title="Add Employee" contentWidth="300px" verticalScrolling="None">
+    <Dialog id="dialogAddEmployee" title="Add Employee" contentWidth="300px" verticalScrolling="true">
         <content>
             <VBox id="dialogVBox">
                 <Input id="inputName" value="{viewModel>/newEmployee/Name}" placeholder="Employee Name" />
@@ -13,7 +13,7 @@
             <Button id="buttonConfirmAddEmployee" icon="sap-icon://add" text="Add" press=".onAddEmployeeDialogPress" />
         </beginButton>
         <endButton>
-            <Button id="buttonCancelAddEmployee" icon="sap-icon://cancel" text="Cancel" press=".onCancelAddEmployeeDialogPress" />
+            <Button id="buttonCancelAddEmployee" icon="sap-icon://cancel" text="Cancel" press=".onCancelEmployeeDialog" />
         </endButton>
     </Dialog>
 </core:FragmentDefinition>

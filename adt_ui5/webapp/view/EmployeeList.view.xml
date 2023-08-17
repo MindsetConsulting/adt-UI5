@@ -24,13 +24,13 @@
                         <ToolbarSpacer id="tableHeaderSpacer" />
 
                         <!-- Add Employee Button -->
-                        <Button id="buttonAddEmployee" icon="sap-icon://add" text="Add Employee" press=".onAddEmployeePress" />
+                        <Button id="buttonAddEmployee" icon="sap-icon://add" text="Add Employee" press=".onOpenEmployeeDialog" />
 
                         <!-- Delete Employee Button -->
                         <Button id="buttonDeleteEmployee" icon="sap-icon://delete" text="Delete Selected" press=".onDeleteEmployeePress" enabled="{= ${viewModel>/selectedItemsCount} > 0}"/>
 
                         <!-- Skills List Button -->
-                        <Button id="buttonSkillsList" icon="sap-icon://activity-items" text="Skills List" type="Emphasized" press=".onSkillsListPress" />
+                        <Button id="buttonSkillsList" icon="sap-icon://activity-items" text="Skills List" type="Emphasized" press=".onSkillListNav" />
                     </OverflowToolbar>
                 </headerToolbar>
 

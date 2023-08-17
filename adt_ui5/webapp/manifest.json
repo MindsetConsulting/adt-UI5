@@ -109,6 +109,14 @@
           "target": [
             "Detail"
           ]
+        },
+        {
+          "name": "SkillList",
+          "pattern": "SkillList",
+          "viewLevel": 2,
+          "target": [
+            "SkillList"
+          ]
         }
       ],
       "targets": {
@@ -125,6 +133,13 @@
           "clearControlAggregation": false,
           "viewId": "Detail",
           "viewName": "Detail"
+        },
+        "SkillList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "SkillList",
+          "viewName": "SkillList"
         }
       }
     },

@@ -74,12 +74,20 @@ sap.ui.define([
 
                 oTable.removeSelections();
             },
-            onAddEmployeePress: function () {
+
+            onOpenEmployeeDialog: function () {
                 this._oDialog.open();
             },
-            onCancelAddEmployeeDialogPress: function () {
+
+            onCancelEmployeeDialog: function () {
                 this._oDialog.close();
                 // this._oDialog.destroy();
+            },
+
+            onSkillListNav: function () {
+                this.getRouter().navTo("SkillList");
+                console.log('nav to skills');
             }
+
         });
     });

@@ -1,0 +1,48 @@
+<mvc:View controllerName="mindset.adt.ui5.adtui5.controller.SkillList"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic" id="SkillsList">
+
+    <semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
+
+        <semantic:titleHeading>
+            <Title id="pageTitle" text="{i18n>skillsListTitle}" level="H2"/>
+        </semantic:titleHeading>
+
+        <semantic:content>
+            <Table id="tableSkills" mode="None" items="{path: '/Skills'}">
+
+                <columns>
+                    <Column>
+                        <Text text="{skillName}" />
+                    </Column>
+                    <Column>
+                        <Text text="" />
+                    </Column>
+                    <Column>
+                        <Text text="" />
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem type="Inactive">
+                        <cells>
+                            <Text text="{skillName}" />
+                            <Button icon="sap-icon://edit" press=".onEditSkillPress" />
+                            <Button icon="sap-icon://delete" press=".onDeleteSkillPress" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </semantic:content>
+
+        <semantic:headerContent>
+            <OverflowToolbar>
+                <Button icon="sap-icon://add" press=".onAddSkillPress" />
+                <Button icon="sap-icon://activity-items" press=".onEmployeeListPress" />
+            </OverflowToolbar>
+        </semantic:headerContent>
+
+    </semantic:SemanticPage>
+
+</mvc:View>
