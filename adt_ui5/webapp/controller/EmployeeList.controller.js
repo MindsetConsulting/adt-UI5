@@ -44,8 +44,7 @@ sap.ui.define([
                 var oTable = this.byId("table");
                 var aSelectedItems = oTable.getSelectedItems();
                 var viewModel = this.getView().getModel("viewModel");
-                console.log('in onSelectionChange');
-
+                            
                 if (viewModel) {
                     viewModel.setProperty("/selectedItemsCount", aSelectedItems.length);
                 }
@@ -53,11 +52,24 @@ sap.ui.define([
             },
 
             onDeleteEmployeePress: function () {
-                console.log('in delete');
                 var oTable = this.byId("table");
                 var aSelectedItems = oTable.getSelectedItems();
+                var oModel = this.getView().getModel();
 
-                // ... (your delete logic here) ...
+                aSelectedItems.forEach(function (oItem) {
+                    var sPath = oItem.getBindingContextPath();
+                    oModel.remove(sPath, {
+                        success: function () {
+                            // Handle successful deletion
+                            console.log('deleted successfully')
+                        },
+                        error: function () {
+                            // Handle deletion error
+                        }
+                    });
+                });
+
+                oTable.removeSelections();
             }
         });
     });
