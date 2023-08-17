@@ -14,12 +14,17 @@ sap.ui.define([
             onInit: function () {
                 controller = this;
 
-                // this.getView().setModel(ViewModel);
-
                 component = this.getOwnerComponent();
 
-                // var oModel = new JSONModel(oData);
-                // this.getView().setModel(oModel);
+                var oViewModel = new JSONModel({
+                    editMode: false,
+                    busy: true,
+                    delay: 0,
+                    selectedItemsCount: null
+
+                });
+                this.oView.setModel(oViewModel, "viewModel");
+
             },
             onPress: function (oEvent) {
                 // The source is the list item that got pressed
@@ -38,11 +43,11 @@ sap.ui.define([
             onSelectionChange: function () {
                 var oTable = this.byId("table");
                 var aSelectedItems = oTable.getSelectedItems();
-                var oViewModel = this.getView().getModel("viewModel");
+                var viewModel = this.getView().getModel("viewModel");
                 console.log('in onSelectionChange');
 
-                if (oViewModel) {
-                    oViewModel.setProperty("/selectedItemsCount", aSelectedItems.length);
+                if (viewModel) {
+                    viewModel.setProperty("/selectedItemsCount", aSelectedItems.length);
                 }
             
             },

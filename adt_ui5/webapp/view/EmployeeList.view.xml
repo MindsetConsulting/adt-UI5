@@ -27,7 +27,7 @@
                         <Button id="_IDGenButtonAddEmployee" icon="sap-icon://add" text="Add Employee" press=".onAddEmployeePress" />
 
                         <!-- Delete Employee Button -->
-                        <Button id="_IDGenButtonDeleteEmployee" icon="sap-icon://delete" text="Delete Employee" press=".onDeleteEmployeePress" enabled="{viewModel>/selectedItemsCount > 0}"/>
+                        <Button id="_IDGenButtonDeleteEmployee" icon="sap-icon://delete" text="Delete Employee" press=".onDeleteEmployeePress" enabled="{= ${viewModel>/selectedItemsCount} > 0}"/>
 
                         <!-- Skills List Button -->
                         <Button id="_IDGenButtonSkillsList" icon="sap-icon://activity-items" text="Skills List" type="Emphasized" press=".onSkillsListPress" />
