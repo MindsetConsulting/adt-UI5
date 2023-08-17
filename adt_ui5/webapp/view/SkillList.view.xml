@@ -50,7 +50,7 @@
                                 </HBox>
                                 <HBox visible="{= !${editMode}}">
                                     <Button icon="sap-icon://edit" press=".onEditSkill" />
-                                    <Button icon="sap-icon://delete" press=".onDeleteSkillPress" />
+                                    <Button icon="sap-icon://delete" press=".onDeleteSkill" />
                                 </HBox>
                             </VBox>
                         </cells>

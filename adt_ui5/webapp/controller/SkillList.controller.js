@@ -46,6 +46,20 @@ sap.ui.define([
             oModel.setProperty(sSkillPath + "/editMode", false);
         },
 
+        onDeleteSkill: function (oEvent) {
+            var oModel = this.getView().getModel();
+            var oContext = oEvent.getSource().getBindingContext();
+            var sSkillPath = oContext.getPath();
+
+            // Get the index of the skill by extracting it from the binding path
+            var iIndex = parseInt(sSkillPath.split("/")[2]);
+
+            // Remove the skill from the model's Skills array
+            var aSkills = oModel.getProperty("/Skills");
+            aSkills.splice(iIndex, 1);
+            oModel.setProperty("/Skills", aSkills);
+        },
+
         getRouter: function () {
             return UIComponent.getRouterFor(this);
         },
