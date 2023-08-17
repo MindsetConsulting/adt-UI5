@@ -18,7 +18,7 @@
                         <ToolbarSpacer id="tableHeaderSpacer" />
 
                         <Button icon="sap-icon://add" text="Add Skill" press=".onAddSkillPress" />
-                        <Button type="Emphasized" icon="sap-icon://activity-items" text="Employee List" press=".onEmployeeListPress" />
+                        <Button type="Emphasized" icon="sap-icon://activity-items" text="Employee List" press=".onEmployeeListNav" />
                     </OverflowToolbar>
                 </headerToolbar>
 

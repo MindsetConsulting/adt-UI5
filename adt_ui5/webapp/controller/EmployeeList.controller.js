@@ -86,7 +86,6 @@ sap.ui.define([
 
             onSkillListNav: function () {
                 this.getRouter().navTo("SkillList");
-                console.log('nav to skills');
             }
 
         });

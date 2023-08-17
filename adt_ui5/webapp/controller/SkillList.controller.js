@@ -18,6 +18,14 @@ sap.ui.define([
 
             this.getView().setModel(oModel);
 
+        },
+
+        getRouter: function () {
+            return UIComponent.getRouterFor(this);
+        },
+
+        onEmployeeListNav: function () {
+            this.getRouter().navTo("EmployeeList");
         }
 
         
