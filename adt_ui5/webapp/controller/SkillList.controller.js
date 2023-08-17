@@ -18,21 +18,8 @@ sap.ui.define([
 
             this.getView().setModel(oModel);
 
-            // this.getRouter().getRoute("SkillList").attachPatternMatched(this._onObjectMatched, this);
         }
 
-        // onRouteMatched: function (oEvent) {
-        //     var sRouteName = oEvent.getParameter("name");
-        //     if (sRouteName === "SkillsList") {
-        //         // Implement any logic that needs to be executed when this route is matched
-        //         console.log("SkillsList route matched");
-        //     }
-        // },
-
-        // getRouter: function () {
-        //     return UIComponent.getRouterFor(this);
-        // }
-
-        // ... (other event handlers)
+        
     });
 });
