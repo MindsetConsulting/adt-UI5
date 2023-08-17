@@ -33,13 +33,26 @@
 
                 <items>
                     <ColumnListItem type="Inactive">
-                        <cells>
+                        <!-- <cells>
                             <Text text="{skillName}" />
                             <HBox justifyContent="End">
                                 <Button icon="sap-icon://edit" press=".onEditSkillPress" />
                                 <ToolbarSpacer width="1rem" />
                                 <Button icon="sap-icon://delete" press=".onDeleteSkillPress" />
                             </HBox>
+                        </cells> -->
+                        <cells>
+                            <VBox>
+                                <Text text="{skillName}" visible="{= !${editMode}}" />
+                                <Input value="{skillName}" visible="{= ${editMode}}" editable="{= ${editMode}}" />
+                                <HBox visible="{= ${editMode}}">
+                                    <Button type="Emphasized" text="Save" icon="sap-icon://save" press=".onSaveSkillPress" />
+                                </HBox>
+                                <HBox visible="{= !${editMode}}">
+                                    <Button icon="sap-icon://edit" press=".onEditSkill" />
+                                    <Button icon="sap-icon://delete" press=".onDeleteSkillPress" />
+                                </HBox>
+                            </VBox>
                         </cells>
                     </ColumnListItem>
                 </items>
