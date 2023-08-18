@@ -11,7 +11,7 @@
 
         <semantic:content>
             <Table id="table" width="auto" mode="MultiSelect" items="{
-            path: '/Employee',
+            path: '/Employee_CRUD',
             sorter: {
                 path: 'Id',
                 descending: false

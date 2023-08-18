@@ -5,8 +5,11 @@
             <VBox id="dialogVBox">
                 <Input id="inputName" value="{viewModel>/newEmployee/Name}" placeholder="Employee Name" />
                 <Input id="inputDepartment" value="{viewModel>/newEmployee/Department}" placeholder="Department" />
-                <DatePicker id="datePickerStartDate" value="{viewModel>/newEmployee/StartDate}" placeholder="Start Date" />
+                <DatePicker id="datePickerStartDate" value="{viewModel>/newEmployee/StartDate}" placeholder="Start Date" 
+                    displayFormat="MM/dd/yyyy"
+                    valueFormat="yyyy-MM-ddTHH:mm:ss"/>
                 <Input id="inputRole" value="{viewModel>/newEmployee/Role}" placeholder="Role" />
+
             </VBox>
         </content>
         <beginButton>

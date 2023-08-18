@@ -20,7 +20,13 @@ sap.ui.define([
                     editMode: false,
                     busy: true,
                     delay: 0,
-                    selectedItemsCount: null
+                    selectedItemsCount: null,
+                    newEmployee: {
+                        Name: "",
+                        Department: "",
+                        StartDate: null,
+                        Role: ""
+                    }
 
                 });
                 this.oView.setModel(oViewModel, "viewModel");
@@ -83,6 +89,37 @@ sap.ui.define([
                 this._oDialog.close();
                 // this._oDialog.destroy();
             },
+
+            onAddEmployeeDialogPress: function () {
+                var oViewModel = this.getView().getModel("viewModel");
+                var oNewEmployee = oViewModel.getProperty("/newEmployee");
+
+                // Perform validation if needed
+                if (!oNewEmployee.Name || !oNewEmployee.Department || !oNewEmployee.StartDate || !oNewEmployee.Role) {
+                    // Display error message or handle validation
+                    return;
+                }
+
+                // Assuming you have a reference to your main model
+                var oModel = this.getView().getModel();
+
+                // Create the new employee data
+                oModel.create("/Employee_CRUD", oNewEmployee, {
+                    success: function () {
+                        // Handle successful creation
+                        console.log('Employee added successfully');
+                    },
+                    error: function () {
+                        // Handle creation error
+                        console.log('Error adding employee');
+                    }
+                });
+
+                // Close the dialog after saving
+                this._oDialog.close();
+            },
+
+
 
             onSkillListNav: function () {
                 this.getRouter().navTo("SkillList");
