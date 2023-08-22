@@ -5,19 +5,45 @@ sap.ui.define([
 
 ], function (Controller, JSONModel, UIComponent) {
     "use strict";
+    var controller, component;
 
     return Controller.extend("mindset.adt.ui5.adtui5.controller.SkillList", {
         onInit: function () {
-            var oModel = new JSONModel({
-                Skills: [
-                    { skillName: "Skill 1", id: 1, editMode: false },
-                    { skillName: "Skill 2", id: 2, editMode: false },
-                    { skillName: "Skill 3", id: 3, editMode: false }
-                ]
+            // var oModel = new JSONModel({
+            //     Skills: [
+            //         { skillName: "Skill 1", id: 1, editMode: false },
+            //         { skillName: "Skill 2", id: 2, editMode: false },
+            //         { skillName: "Skill 3", id: 3, editMode: false }
+            //     ]
+            // });
+
+            controller = this;
+
+            component = this.getOwnerComponent();
+
+            var oViewModel = new JSONModel({
+                editMode: false,
+                busy: true,
+                delay: 0,
+                selectedItemsCount: null,
+                newSkill: {
+                    Name: "",
+                    SkillId: this.generateUUID()
+                }
+
             });
+            this.oView.setModel(oViewModel, "viewModel");
 
-            this.getView().setModel(oModel);
+        },
 
+        generateUUID: function () {
+            var d = new Date().getTime();
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (d + Math.random() * 16) % 16 | 0;
+                d = Math.floor(d / 16);
+                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+            return uuid;
         },
 
         onAddSkillPress: function () {

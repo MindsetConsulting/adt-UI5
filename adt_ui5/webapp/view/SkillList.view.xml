@@ -10,7 +10,7 @@
         </semantic:titleHeading>
 
         <semantic:content>
-            <Table id="tableSkills" mode="None" items="{path: '/Skills'}">
+            <Table id="tableSkills" mode="None" items="{path: '/Employee_Skills_CRUD'}">
 
                 <headerToolbar>
                     <OverflowToolbar id="tableHeaderToolbar">
@@ -45,8 +45,8 @@
                         <cells>
                             <VBox>
                                 <HBox justifyContent="SpaceBetween">
-                                    <Text text="{skillName}" visible="{= !${editMode}}" />
-                                    <Input value="{skillName}" visible="{= ${editMode}}" editable="{= ${editMode}}" />
+                                    <Text text="{Name}" visible="{= !${editMode}}" />
+                                    <Input value="{Name}" visible="{= ${editMode}}" editable="{= ${editMode}}" />
                                 </HBox>
                             </VBox>
                             <VBox>
