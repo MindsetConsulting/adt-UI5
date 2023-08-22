@@ -28,7 +28,14 @@ sap.ui.define([
             var oModel = this.getOwnerComponent().getModel();
             oModel.read("/Employee_Skills_CRUD", {
                 success: function (oData) {
-                    oViewModel.setProperty("/Skills", oData.results); // Assuming the skills are returned as an array
+                    var skills = oData.results.map(function (skill) {
+                        return {
+                            Name: skill.Name,
+                            SkillId: skill.SkillId,
+                            editMode: false // Initialize editMode to false
+                        };
+                    });
+                    oViewModel.setProperty("/Skills", skills);
                 },
                 error: function (oError) {
                     // Handle error
@@ -53,6 +60,7 @@ sap.ui.define([
             var aSkills = oViewModel.getProperty("/Skills");
             var newSkill = {
                 Name: "",
+                SkillId: this.generateUUID(),
                 editMode: true
             };
             aSkills.push(newSkill);
@@ -67,16 +75,43 @@ sap.ui.define([
             oModel.setProperty(oContext.getPath() + "/editMode", true);
         },
 
-        onSaveSkillPress: function (oEvent) {
-            var oModel = this.getView().getModel();
-            var oContext = oEvent.getSource().getBindingContext();
-            var sSkillPath = oContext.getPath();
-            var sSkillName = oModel.getProperty(sSkillPath + "/skillName").trim();
+        onSaveSkillPress: function () {
+            var oViewModel = this.getView().getModel("viewModel");
+            var aSkills = oViewModel.getProperty("/Skills");
 
-            // Save the edited skill name and set back to view mode
-            oModel.setProperty(sSkillPath + "/skillName", sSkillName);
-            oModel.setProperty(sSkillPath + "/editMode", false);
+            // Find the new skill that is in edit mode
+            var newSkill = aSkills.find(function (skill) {
+                return skill.editMode === true;
+            });
+
+            if (newSkill) {
+                // Save the new skill
+                newSkill.editMode = false; // Set back to view mode
+                oViewModel.refresh(); // Refresh the binding to reflect the change
+
+                // Prepare the skill object for saving by removing the editMode property
+                var skillToSave = Object.assign({}, newSkill); // Clone the skill object
+                delete skillToSave.editMode; // Remove the editMode property
+
+                // Perform the POST request to save the skill
+                var oModel = this.getOwnerComponent().getModel(); // Get the OData model
+                oModel.create("/Employee_Skills_CRUD", skillToSave, {
+                    success: function () {
+                        // Handle success
+                    },
+                    error: function () {
+                        // Handle error
+                        aSkills.pop(); // Remove the skill from the viewModel
+                        oViewModel.refresh(); // Refresh the binding to reflect the change
+                        sap.m.MessageToast.show("Failed to save the skill. Please try again.");
+                    }
+                });
+            }
         },
+
+
+
+
 
         onDeleteSkill: function (oEvent) {
             var oModel = this.getView().getModel();
