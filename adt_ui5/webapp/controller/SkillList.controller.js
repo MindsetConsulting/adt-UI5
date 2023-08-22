@@ -9,16 +9,7 @@ sap.ui.define([
 
     return Controller.extend("mindset.adt.ui5.adtui5.controller.SkillList", {
         onInit: function () {
-            // var oModel = new JSONModel({
-            //     Skills: [
-            //         { skillName: "Skill 1", id: 1, editMode: false },
-            //         { skillName: "Skill 2", id: 2, editMode: false },
-            //         { skillName: "Skill 3", id: 3, editMode: false }
-            //     ]
-            // });
-
             controller = this;
-
             component = this.getOwnerComponent();
 
             var oViewModel = new JSONModel({
@@ -29,11 +20,22 @@ sap.ui.define([
                 newSkill: {
                     Name: "",
                     SkillId: this.generateUUID()
-                }
-
+                },
+                Skills: [] // Initialize an empty Skills array
             });
-            this.oView.setModel(oViewModel, "viewModel");
 
+            // Fetch existing skills from OData service
+            var oModel = this.getOwnerComponent().getModel();
+            oModel.read("/Employee_Skills_CRUD", {
+                success: function (oData) {
+                    oViewModel.setProperty("/Skills", oData.results); // Assuming the skills are returned as an array
+                },
+                error: function (oError) {
+                    // Handle error
+                }
+            });
+
+            this.getView().setModel(oViewModel, "viewModel");
         },
 
         generateUUID: function () {
@@ -47,13 +49,17 @@ sap.ui.define([
         },
 
         onAddSkillPress: function () {
-            var oModel = this.getView().getModel();
-            var aSkills = oModel.getProperty("/Skills");
-
-            // Add a new empty skill to the model with an editMode property
-            aSkills.push({ skillName: "", editMode: true });
-            oModel.setProperty("/Skills", aSkills);
+            var oViewModel = this.getView().getModel("viewModel");
+            var aSkills = oViewModel.getProperty("/Skills");
+            var newSkill = {
+                Name: "",
+                editMode: true
+            };
+            aSkills.push(newSkill);
+            oViewModel.refresh(); // Refresh the binding to reflect the change
         },
+
+
 
         onEditSkill: function (oEvent) {
             var oModel = this.getView().getModel();
