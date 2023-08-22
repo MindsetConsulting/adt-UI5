@@ -1,7 +1,7 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/UIComponent",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
 
 ],
     /**
@@ -25,7 +25,8 @@ sap.ui.define([
                         Name: "",
                         Department: "",
                         StartDate: null,
-                        Role: ""
+                        Role: "",
+                        Id: this.generateUUID()
                     }
 
                 });
@@ -35,6 +36,17 @@ sap.ui.define([
                 this.getView().addDependent(this._oDialog);
 
             },
+
+            generateUUID: function () {
+            var d = new Date().getTime();
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (d + Math.random() * 16) % 16 | 0;
+                d = Math.floor(d / 16);
+                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+            return uuid;
+        },
+
             onPress: function (oEvent) {
                 // The source is the list item that got pressed
                 this._showObject(oEvent.getSource());
@@ -108,6 +120,13 @@ sap.ui.define([
                     success: function () {
                         // Handle successful creation
                         console.log('Employee added successfully');
+                        oViewModel.setProperty("/newEmployee", {
+                            Name: "",
+                            Department: "",
+                            StartDate: null,
+                            Role: "",
+                            Id: ""
+                        });
                     },
                     error: function () {
                         // Handle creation error
@@ -119,7 +138,17 @@ sap.ui.define([
                 this._oDialog.close();
             },
 
-
+            formatDate: function (sTimestamp) {
+                if (typeof sTimestamp === "string") {
+                    var timestamp = parseInt(sTimestamp.match(/\d+/)[0]);
+                    var date = new Date(timestamp);
+                    var formattedDate = (date.getMonth() + 1).toString().padStart(2, '0') + '/' +
+                        date.getDate().toString().padStart(2, '0') + '/' +
+                        date.getFullYear();
+                    return formattedDate;
+                }
+                return "";
+            },
 
             onSkillListNav: function () {
                 this.getRouter().navTo("SkillList");
