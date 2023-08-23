@@ -68,13 +68,14 @@ sap.ui.define([
             if (unsavedSkillIndex === -1) {
                 var newSkill = {
                     Name: "",
-                    SkillId: this.generateUUID(),
+                    SkillId: "", // Generate a new UUID later during save
                     editMode: true
                 };
                 aSkills.push(newSkill);
                 oViewModel.refresh(); // Refresh the binding to reflect the change
             }
         },
+
 
 
         onEditSkill: function (oEvent) {
@@ -94,6 +95,97 @@ sap.ui.define([
             }
         },
 
+        // onSaveSkillPress: function (oEvent) {
+        //     var oViewModel = this.getView().getModel("viewModel");
+        //     var aSkills = oViewModel.getProperty("/Skills");
+
+        //     // Find the skill that is in edit mode
+        //     var editedSkillIndex = aSkills.findIndex(function (skill) {
+        //         return skill.editMode === true;
+        //     });
+
+        //     if (editedSkillIndex !== -1) {
+        //         var editedSkill = aSkills[editedSkillIndex];
+
+        //         // Clone the skill object and remove the editMode property
+        //         var skillToSave = Object.assign({}, editedSkill);
+        //         delete skillToSave.editMode;
+
+        //         var oModel = this.getOwnerComponent().getModel();
+
+        //         if (editedSkill.SkillId) {
+        //             // If SkillId exists, perform an update
+        //             oModel.update("/Employee_Skills_CRUD(guid'" + editedSkill.SkillId + "')", skillToSave, {
+        //                 success: function () {
+        //                     // Handle success
+        //                     MessageToast.show("Skill updated successfully");
+        //                     editedSkill.editMode = false; // Set back to view mode
+        //                     oViewModel.refresh(); // Refresh the binding to reflect the change
+        //                 },
+        //                 error: function () {
+        //                     // Handle error
+        //                     MessageToast.show("Error, skill not updated");
+        //                     editedSkill.editMode = true; // Set back to edit mode
+        //                     oViewModel.refresh(); // Refresh the binding to reflect the change
+        //                 }
+        //             });
+        //         } else {
+        //             // If SkillId is not present, generate a new UUID and perform a create
+        //             skillToSave.SkillId = this.generateUUID(); // Generate a new UUID
+        //             oModel.create("/Employee_Skills_CRUD", skillToSave, {
+        //                 success: function () {
+        //                     // Handle success
+        //                     MessageToast.show("Skill created successfully");
+        //                     editedSkill.editMode = false; // Set back to view mode
+        //                     oViewModel.refresh(); // Refresh the binding to reflect the change
+        //                 },
+        //                 error: function () {
+        //                     // Handle error
+        //                     MessageToast.show("Error, skill not created");
+        //                     aSkills.splice(editedSkillIndex, 1); // Remove the unsaved skill
+        //                     oViewModel.refresh(); // Refresh the binding to reflect the change
+        //                 }
+        //             });
+        //         }
+        //     }
+        // },
+        // onSaveSkillPress: function (oEvent) {
+        //     var oViewModel = this.getView().getModel("viewModel");
+        //     var aSkills = oViewModel.getProperty("/Skills");
+
+        //     // Find the new skill that is in edit mode
+        //     var newSkill = aSkills.find(function (skill) {
+        //         return skill.editMode === true;
+        //     });
+
+        //     if (newSkill) {
+        //         // Set back to view mode and refresh the binding
+        //         newSkill.editMode = false;
+        //         oViewModel.refresh();
+
+        //         // Generate a new UUID for the skill
+        //         newSkill.SkillId = this.generateUUID();
+
+        //         // Prepare the skill object for creating by removing the editMode property
+        //         var skillToCreate = Object.assign({}, newSkill); // Clone the skill object
+        //         delete skillToCreate.editMode; // Remove the editMode property
+
+        //         // Perform the POST request to create the skill
+        //         var oModel = this.getOwnerComponent().getModel(); // Get the OData model
+        //         oModel.create("/Employee_Skills_CRUD", skillToCreate, {
+        //             success: function () {
+        //                 // Handle success
+        //             },
+        //             error: function () {
+        //                 // Handle error
+        //                 sap.m.MessageToast.show("Failed to create the skill. Please try again.");
+        //                 aSkills.pop(); // Remove the skill from the viewModel
+        //                 oViewModel.refresh(); // Refresh the binding to reflect the change
+        //             }
+        //         });
+        //     }
+        // },
+
         onSaveSkillPress: function (oEvent) {
             var oViewModel = this.getView().getModel("viewModel");
             var aSkills = oViewModel.getProperty("/Skills");
@@ -107,14 +199,14 @@ sap.ui.define([
                 var editedSkill = aSkills[editedSkillIndex];
 
                 // Clone the skill object and remove the editMode property
-                var skillToUpdate = Object.assign({}, editedSkill);
-                delete skillToUpdate.editMode;
+                var skillToSave = Object.assign({}, editedSkill);
+                delete skillToSave.editMode;
 
                 var oModel = this.getOwnerComponent().getModel();
 
                 if (editedSkill.SkillId) {
                     // If SkillId exists, perform an update
-                    oModel.update("/Employee_Skills_CRUD(guid'" + editedSkill.SkillId + "')", skillToUpdate, {
+                    oModel.update("/Employee_Skills_CRUD(guid'" + editedSkill.SkillId + "')", skillToSave, {
                         success: function () {
                             // Handle success
                             MessageToast.show("Skill updated successfully");
@@ -124,17 +216,17 @@ sap.ui.define([
                         error: function () {
                             // Handle error
                             MessageToast.show("Error, skill not updated");
-                            editedSkill.editMode = false; // Set back to view mode
+                            editedSkill.editMode = true; // Set back to edit mode
                             oViewModel.refresh(); // Refresh the binding to reflect the change
                         }
                     });
                 } else {
-                    // If SkillId is not present, perform a create
-                    oModel.create("/Employee_Skills_CRUD", skillToUpdate, {
-                        success: function (data) {
+                    // If SkillId is not present, generate a new UUID and perform a create
+                    skillToSave.SkillId = this.generateUUID(); // Generate a new UUID
+                    oModel.create("/Employee_Skills_CRUD", skillToSave, {
+                        success: function () {
                             // Handle success
                             MessageToast.show("Skill created successfully");
-                            editedSkill.SkillId = data.SkillId; // Update the SkillId
                             editedSkill.editMode = false; // Set back to view mode
                             oViewModel.refresh(); // Refresh the binding to reflect the change
                         },
@@ -148,6 +240,7 @@ sap.ui.define([
                 }
             }
         },
+
 
         onDeleteSkill: function (oEvent) {
             var oViewModel = this.getView().getModel("viewModel");
@@ -184,7 +277,7 @@ sap.ui.define([
         getRouter: function () {
             return UIComponent.getRouterFor(this);
         },
-        
+
         onEmployeeListNav: function () {
             this.getRouter().navTo("EmployeeList");
         }
