@@ -10,38 +10,38 @@ sap.ui.define([
      */
     function (Controller, JSONModel, UIComponent, Filter, Sorter) {
         "use strict";
-        var controller, component;
+        var controller, component, sEmployeeId;
         return Controller.extend("mindset.adt.ui5.adtui5.controller.Detail", {
-            onInit: function () {
-                controller = this;
-                component = this.getOwnerComponent();
 
-                var oUriParams = jQuery.sap.getUriParameters();
-                var sEmployeeId = oUriParams.get("employeeId");
-                
-                var oViewModel = new JSONModel({
+            onInit: function () {
+                var oViewModel = new sap.ui.model.json.JSONModel({
                     editMode: false,
                     busy: true,
                     delay: 0,
-                    employeeId: this.getEmployeeId(),
+                    employeeId: "",
                     editMode: false
-
                 });
-                this.getRouter().getRoute("Detail").attachPatternMatched(this._onObjectMatched, this);
-                this.oView.setModel(oViewModel, "viewModel");
 
-            }, 
+                this.getView().setModel(oViewModel, "viewModel");
+
+
+                this.getRouter().getRoute("Detail").attachPatternMatched(this._onObjectMatched, this);
+            },
+
 
             getEmployeeId: function () {
-                var hash = this.getRouter().oHashChanger.hash;
-                var match = hash.match(/\/\('(\d+)'\)/);
+                var match = sEmployeeId.match(/'([^']+)'/);
 
                 if (match && match[1]) {
-                    return match[1]; // This will return the captured numeric part
+                    // return match[1]; // This will return the captured part inside single quotes
+                    var viewModel = this.getView().getModel("viewModel");
+                    viewModel.setProperty("/employeeId", match[1]);
                 } else {
                     return null; // Return a default value or handle the case where no match is found
                 }
             },
+
+
 
             onEditPress: function () {
                 //sets edit mode for applicable fields
@@ -59,7 +59,7 @@ sap.ui.define([
             },
 
             _bindView: function (sObjectPath) {
-                var oViewModel = this.oView.getModel("objectView");
+                var oViewModel = this.oView.getModel("viewModel");
 
                 this.getView().bindElement({
                     path: sObjectPath,
@@ -76,6 +76,10 @@ sap.ui.define([
             _onObjectMatched: function (oEvent) {
                 var sObjectId = oEvent.getParameter("arguments").employeeId;
                 this._bindView("/Employee" + sObjectId);
+                sEmployeeId = sObjectId;
+
+                
+                this.getEmployeeId();
             },
             onNavBack: function () {
                 // eslint-disable-next-line sap-no-history-manipulation

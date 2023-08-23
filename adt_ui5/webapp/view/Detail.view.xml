@@ -56,39 +56,20 @@
       <uxap:ObjectPageSection id="_IDGenObjectPageSection2" title="Skills">
         <uxap:subSections>
           <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection4">
+            <!-- FIXME: Filter still not working, hardcoded or dynamic
+            if dynamic, should use {viewModel>/employeeId} or similar-->
             <Table id="_IDGenTable1" items="{
                       path: '/Employee_Skills_CRUD',
-                    filters: [{ 
+                      filters: [{ 
                     path: 'EmployeeId', 
                     operator: 'EQ', 
-                    value1: '1'
+                    value1: 'guid(\'185b6714-4112-11ee-be56-0242ac120002\')'
                     }],
                     sorter: {
                       path: 'Name',
                       descending: true
                     }
                   }">
-
-              <!-- working: items="{
-                    path: '/Employee_Skills_CRUD',
-                    FIXME: (filter not working) 
-                    filters: [{ 
-                    path: 'EmployeeId', 
-                    operator: 'EQ', 
-                    value1: '{EmployeeId}' 
-                    }],
-                    sorter: {
-                        path: 'Name',
-                        descending: true
-                    }
-                    }" 
-                  FIXME: does not work items="{
-                                path : 'Employee_Skills_CRUD',
-                                parameters: {
-                                    expand: 'Employee_Skills'
-                                }
-                                }"
-                  -->
 
               <headerToolbar>
                 <OverflowToolbar id="_IDGenTB1">
