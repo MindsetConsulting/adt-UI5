@@ -10,13 +10,9 @@
         </semantic:titleHeading>
 
         <semantic:content>
-            <Table id="table" width="auto" mode="MultiSelect" items="{
-            path: '/Employee_CRUD',
-            sorter: {
-                path: 'Id',
-                descending: false
-            }
-        }" selectionChange=".onSelectionChange" delete=".onDelete">
+            <Table id="table" width="auto" mode="MultiSelect" 
+            items="{path: '/Employee_CRUD'}" 
+            selectionChange=".onSelectionChange" delete=".onDelete">
 
                 <headerToolbar>
                     <OverflowToolbar id="tableHeaderToolbar">

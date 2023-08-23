@@ -2,13 +2,10 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
-
+    "sap/m/MessageToast" 
 ],
-    /**
-     * @param {typeof sap.ui.core.mvc.Controller} Controller
-     */
-    function (Controller, UIComponent, JSONModel) {
-        "use strict";
+function (Controller, UIComponent, JSONModel, MessageToast) { 
+    "use strict";
         var controller, component;
         return Controller.extend("mindset.adt.ui5.adtui5.controller.EmployeeList", {
             onInit: function () {
@@ -82,10 +79,12 @@ sap.ui.define([
                     oModel.remove(sPath, {
                         success: function () {
                             // Handle successful deletion
-                            console.log('deleted successfully')
+                            console.log('deleted successfully');
+                            MessageToast.show("Employee deleted");
                         },
                         error: function () {
                             // Handle deletion error
+                            MessageToast.show("Error, employee not deleted");
                         }
                     });
                 });
@@ -120,6 +119,7 @@ sap.ui.define([
                     success: function () {
                         // Handle successful creation
                         console.log('Employee added successfully');
+                        MessageToast.show("Employee created");
                         oViewModel.setProperty("/newEmployee", {
                             Name: "",
                             Department: "",
@@ -131,10 +131,10 @@ sap.ui.define([
                     error: function () {
                         // Handle creation error
                         console.log('Error adding employee');
+                        MessageToast.show("Error, employee not created");
                     }
                 });
 
-                // Close the dialog after saving
                 this._oDialog.close();
             },
 
