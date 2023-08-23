@@ -90,7 +90,7 @@ sap.ui.define([
 
 
 
-
+        // works for addNew only 
         // onSaveSkillPress: function (oEvent) {
         //     var oViewModel = this.getView().getModel("viewModel");
         //     var aSkills = oViewModel.getProperty("/Skills");
@@ -122,38 +122,78 @@ sap.ui.define([
         //         });
         //     }
         // },
-onSaveSkillPress: function (oEvent) {
-    var oViewModel = this.getView().getModel("viewModel");
-    var aSkills = oViewModel.getProperty("/Skills");
 
-    // Find the new skill that is in edit mode
-    var editedSkill = aSkills.find(function (skill) {
-        return skill.editMode === true;
-    });
+// works for editing skill only
+//         onSaveSkillPress: function (oEvent) {
+//     var oViewModel = this.getView().getModel("viewModel");
+//     var aSkills = oViewModel.getProperty("/Skills");
 
-    if (editedSkill) {
-        // Save the edited skill
-        editedSkill.editMode = false; // Set back to view mode
-        oViewModel.refresh(); // Refresh the binding to reflect the change
+//     // Find the new skill that is in edit mode
+//     var editedSkill = aSkills.find(function (skill) {
+//         return skill.editMode === true;
+//     });
 
-        // Prepare the skill object for updating by removing the editMode property
-        var skillToUpdate = Object.assign({}, editedSkill); // Clone the skill object
-        delete skillToUpdate.editMode; // Remove the editMode property
+//     if (editedSkill) {
+//         // Save the edited skill
+//         editedSkill.editMode = false; // Set back to view mode
+//         oViewModel.refresh(); // Refresh the binding to reflect the change
 
-        // Perform the PATCH/UPDATE request to update the skill
-        var oModel = this.getOwnerComponent().getModel(); // Get the OData model
-        oModel.update("/Employee_Skills_CRUD(guid'" + skillToUpdate.SkillId + "')", skillToUpdate, {
-            success: function () {
-                // Handle success
-            },
-            error: function () {
-                // Handle error
-                sap.m.MessageToast.show("Failed to update the skill. Please try again.");
+//         // Prepare the skill object for updating by removing the editMode property
+//         var skillToUpdate = Object.assign({}, editedSkill); // Clone the skill object
+//         delete skillToUpdate.editMode; // Remove the editMode property
+
+//         // Perform the PATCH/UPDATE request to update the skill
+//         var oModel = this.getOwnerComponent().getModel(); // Get the OData model
+//         oModel.update("/Employee_Skills_CRUD(guid'" + skillToUpdate.SkillId + "')", skillToUpdate, {
+//             success: function () {
+//                 // Handle success
+//             },
+//             error: function () {
+//                 // Handle error
+//                 sap.m.MessageToast.show("Failed to update the skill. Please try again.");
+//             }
+//         });
+//     }
+// },
+        
+
+
+        onSaveSkillPress: function (oEvent) {
+            var oViewModel = this.getView().getModel("viewModel");
+            var aSkills = oViewModel.getProperty("/Skills");
+
+            // Find the new skill that is in edit mode
+            var newSkill = aSkills.find(function (skill) {
+                return skill.editMode === true;
+            });
+
+            if (newSkill) {
+                // Set back to view mode and refresh the binding
+                newSkill.editMode = false;
+                oViewModel.refresh();
+
+                // Generate a new UUID for the skill
+                newSkill.SkillId = this.generateUUID();
+
+                // Prepare the skill object for creating by removing the editMode property
+                var skillToCreate = Object.assign({}, newSkill); // Clone the skill object
+                delete skillToCreate.editMode; // Remove the editMode property
+
+                // Perform the POST request to create the skill
+                var oModel = this.getOwnerComponent().getModel(); // Get the OData model
+                oModel.create("/Employee_Skills_CRUD", skillToCreate, {
+                    success: function () {
+                        // Handle success
+                    },
+                    error: function () {
+                        // Handle error
+                        sap.m.MessageToast.show("Failed to create the skill. Please try again.");
+                        aSkills.pop(); // Remove the skill from the viewModel
+                        oViewModel.refresh(); // Refresh the binding to reflect the change
+                    }
+                });
             }
-        });
-    }
-},
-
+        },
 
 
 
