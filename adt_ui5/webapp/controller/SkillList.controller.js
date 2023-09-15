@@ -95,7 +95,6 @@ sap.ui.define([
             }
         },
 
-
         onSaveSkillPress: function (oEvent) {
             var oViewModel = this.getView().getModel("viewModel");
             var aSkills = oViewModel.getProperty("/Skills");
@@ -108,31 +107,22 @@ sap.ui.define([
             if (editedSkillIndex !== -1) {
                 var editedSkill = aSkills[editedSkillIndex];
 
+                // Check if it's a new skill (SkillId is not present or empty)
+                var isNewSkill = !editedSkill.SkillId || editedSkill.SkillId.trim() === '';
+
+                if (isNewSkill) {
+                    // Generate a new UUID for SkillId for new skill
+                    editedSkill.SkillId = this.generateUUID();
+                }
+
                 // Clone the skill object and remove the editMode property
                 var skillToSave = Object.assign({}, editedSkill);
                 delete skillToSave.editMode;
 
                 var oModel = this.getOwnerComponent().getModel();
 
-                if (editedSkill.SkillId) {
-                    // If SkillId exists, perform an update
-                    oModel.update("/Employee_Skills_CRUD(guid'" + editedSkill.SkillId + "')", skillToSave, {
-                        success: function () {
-                            // Handle success
-                            MessageToast.show("Skill updated successfully");
-                            editedSkill.editMode = false; // Set back to view mode
-                            oViewModel.refresh(); // Refresh the binding to reflect the change
-                        },
-                        error: function () {
-                            // Handle error
-                            MessageToast.show("Error, skill not updated");
-                            editedSkill.editMode = true; // Set back to edit mode
-                            oViewModel.refresh(); // Refresh the binding to reflect the change
-                        }
-                    });
-                } else {
-                    // If SkillId is not present, generate a new UUID and perform a create
-                    skillToSave.SkillId = this.generateUUID(); // Generate a new UUID
+                if (isNewSkill) {
+                    // If it's a new skill, perform a create
                     oModel.create("/Employee_Skills_CRUD", skillToSave, {
                         success: function () {
                             // Handle success
@@ -144,6 +134,22 @@ sap.ui.define([
                             // Handle error
                             MessageToast.show("Error, skill not created");
                             aSkills.splice(editedSkillIndex, 1); // Remove the unsaved skill
+                            oViewModel.refresh(); // Refresh the binding to reflect the change
+                        }
+                    });
+                } else {
+                    // If it's an existing skill, perform an update
+                    oModel.update("/Employee_Skills_CRUD(guid'" + editedSkill.SkillId + "')", skillToSave, {
+                        success: function () {
+                            // Handle success
+                            MessageToast.show("Skill updated successfully");
+                            editedSkill.editMode = false; // Set back to view mode
+                            oViewModel.refresh(); // Refresh the binding to reflect the change
+                        },
+                        error: function () {
+                            // Handle error
+                            MessageToast.show("Error, skill not updated");
+                            editedSkill.editMode = true; // Set back to edit mode
                             oViewModel.refresh(); // Refresh the binding to reflect the change
                         }
                     });
