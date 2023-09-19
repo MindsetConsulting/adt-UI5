@@ -21,20 +21,21 @@
         <VBox id="_IDGenVBox2">
           <HBox>
             <Label text="Department:" labelFor="_IDGenObjectStatus1" class="sapUiTinyMarginEnd"/>
-            <Input id="_department" placeholder="{Department}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <Input id="_department" value="{Department}" visible="{= ${viewModel>/editMode} ? true : false }"/>
             <Text text="{= ${viewModel>/editMode} ? '' : ${Department} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
           </HBox>
           
           <HBox>
             <Label text="Role:" labelFor="_IDGenObjectStatus1" class="sapUiTinyMarginEnd"/>
-            <Input id="_role" placeholder="{Role}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <Input id="_role" value="{Role}" visible="{= ${viewModel>/editMode} ? true : false }"/>
             <Text text="{= ${viewModel>/editMode} ? '' : ${Role} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
           </HBox>
 
           <HBox>
             <Label text="Start Date:" labelFor="_IDGenObjectStatus1" class="sapUiTinyMarginEnd"/>
-            <Input id="_start" placeholder="{StartDate}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <!-- <Input id="_start" placeholder="{StartDate}" visible="{= ${viewModel>/editMode} ? true : false }"/> -->
             <Text text="{= ${viewModel>/editMode} ? '' : ${StartDate} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
+            <DatePicker id="_start" value="{StartDate}" visible="{= ${viewModel>/editMode} ? true : false }"/>
           </HBox>
         </VBox>
       </HBox>

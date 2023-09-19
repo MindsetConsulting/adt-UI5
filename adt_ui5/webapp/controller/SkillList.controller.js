@@ -2,8 +2,8 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/UIComponent",
-    "sap/m/MessageToast" // Add this line for MessageToast
-
+    "sap/m/MessageToast" 
+    
 ], function (Controller, JSONModel, UIComponent, MessageToast) {
     "use strict";
     var controller, component;
