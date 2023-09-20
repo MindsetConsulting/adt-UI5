@@ -112,7 +112,7 @@
 
           <HBox>
             <Label text="Email:" labelFor="_email" class="sapUiTinyMarginEnd"/>
-            <Input type="Email" id="_email" value="{Email}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <Input type="Email" id="_email" value="{Email}" visible="{= ${viewModel>/editMode} ? true : false }" change="onEmailChange"/>
             <Text text="{= ${viewModel>/editMode} ? '' : ${Email} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
           </HBox>   
 

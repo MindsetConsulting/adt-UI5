@@ -107,6 +107,21 @@ sap.ui.define([
                 }
             },
 
+            onEmailChange: function (oEvent) {
+                var oInput = oEvent.getSource();
+                var sValue = oInput.getValue();
+
+                // Check if the value is not empty and has the "@" symbol and a domain
+                var isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sValue);
+
+                if (!isEmailValid) {
+                    oInput.setValueState(sap.ui.core.ValueState.Error);
+                    alert("Please enter a valid email");
+
+                } else {
+                    oInput.setValueState(sap.ui.core.ValueState.None);
+                }
+            },
 
 
             _bindView: function (sObjectPath) {
