@@ -60,21 +60,31 @@ sap.ui.define([
                 this.updateEntityInModel(editedData);
             },
 
+            // getEditedData: function () {
+            //     var dateToConvert = this.byId("_start").getValue();
+            //     var convertedDate = this.createJSONDate(dateToConvert);
+            //     return {
+            //         Department: this.byId("_department").getValue(),
+            //         Role: this.byId("_role").getValue(),
+            //         StartDate: convertedDate
+            //     };
+            // },
+
             getEditedData: function () {
-                var dateToConvert = this.byId("_start").getValue();
-                var convertedDate = this.createJSONDate(dateToConvert);
-                return {
-                    Department: this.byId("_department").getValue(),
-                    Role: this.byId("_role").getValue(),
-                    StartDate: convertedDate
-                };
+                var editedData = {};
+
+                var inputFields = ["_Department", "_Role", "_Address", "_CityState", "_ZipCode", "_Email", "_PhoneNumber"];
+                inputFields.forEach(function (field) {
+                    var inputControl = this.byId(field);
+                    editedData[field.substring(1)] = inputControl.getValue();
+                }, this);
+
+                var dateToConvert = this.byId("_StartDate").getValue();
+                editedData.StartDate = this.createJSONDate(dateToConvert);
+
+                return editedData;
             },
 
-            // createJSONDate: function (dateToConvert) {
-            //     var dateObject = new Date(dateToConvert); // Convert the string to a Date object
-            //     var ticks = dateObject.getTime();
-            //     return "\/Date(" + ticks + ")\/";
-            // },
 
             createJSONDate: function (dateToConvert) {
                 // Split the dateToConvert string to extract the month, day, and year
