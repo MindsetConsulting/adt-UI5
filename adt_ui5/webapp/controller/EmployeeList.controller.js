@@ -2,12 +2,15 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
-    "sap/m/MessageToast" 
+    "sap/m/MessageToast",
+    "../model/formatter"
+
 ],
-function (Controller, UIComponent, JSONModel, MessageToast) { 
-    "use strict";
+    function (Controller, UIComponent, JSONModel, MessageToast, formatter) { 
+        "use strict";
         var controller, component;
         return Controller.extend("mindset.adt.ui5.adtui5.controller.EmployeeList", {
+            formatter: formatter,
             onInit: function () {
                 controller = this;
 
