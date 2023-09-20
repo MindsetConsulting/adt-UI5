@@ -4,16 +4,17 @@ sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/Filter",
     "sap/ui/model/Sorter",
-    "sap/m/MessageToast" 
+    "sap/m/MessageToast", 
+    "../model/formatter"
 
 ],
-    function (Controller, JSONModel, UIComponent, Filter, Sorter, MessageToast) {
+    function (Controller, JSONModel, UIComponent, Filter, Sorter, MessageToast, formatter) {
         "use strict";
 
         var sEmployeeId;
 
         return Controller.extend("mindset.adt.ui5.adtui5.controller.Detail", {
-
+            formatter: formatter,
             onInit: function () {
                 var oViewModel = new sap.ui.model.json.JSONModel({
                     editMode: false,
@@ -21,6 +22,7 @@ sap.ui.define([
                     delay: 0,
                     employeeId: ""
                 });
+                // sap.ui.getCore().setModel(Formatter, "formatter");
 
                 this.getView().setModel(oViewModel, "viewModel");
 

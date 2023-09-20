@@ -20,22 +20,43 @@
         <Avatar id="_IDGenAvatar1" displaySize="XL" backgroundColor="Transparent" press="onPress"/>
         <VBox id="_IDGenVBox2">
           <HBox>
-            <Label text="Department:" labelFor="_IDGenObjectStatus1" class="sapUiTinyMarginEnd"/>
+            <Label text="Department:" labelFor="_department" class="sapUiTinyMarginEnd"/>
             <Input id="_department" value="{Department}" visible="{= ${viewModel>/editMode} ? true : false }"/>
             <Text text="{= ${viewModel>/editMode} ? '' : ${Department} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
           </HBox>
           
           <HBox>
-            <Label text="Role:" labelFor="_IDGenObjectStatus1" class="sapUiTinyMarginEnd"/>
+            <Label text="Role:" labelFor="_role" class="sapUiTinyMarginEnd"/>
             <Input id="_role" value="{Role}" visible="{= ${viewModel>/editMode} ? true : false }"/>
             <Text text="{= ${viewModel>/editMode} ? '' : ${Role} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
           </HBox>
 
           <HBox>
             <Label text="Start Date:" labelFor="_IDGenObjectStatus1" class="sapUiTinyMarginEnd"/>
-            <!-- <Input id="_start" placeholder="{StartDate}" visible="{= ${viewModel>/editMode} ? true : false }"/> -->
-            <Text text="{= ${viewModel>/editMode} ? '' : ${StartDate} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
-            <DatePicker id="_start" value="{StartDate}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <Text 
+              text="{
+                path: 'StartDate',
+                type: 'sap.ui.model.type.Date',
+                formatOptions: {
+                  style: 'medium',
+                  pattern: 'MM-dd-yyyy'
+                  
+                },
+                formatter: '.formatter.formatDate'
+              }"
+              visible="{= ${viewModel>/editMode} ? false : true }"/>
+            <DatePicker id="_start" 
+              value="{
+              path: 'StartDate',
+                type: 'sap.ui.model.type.Date',
+                formatOptions: {
+                  style: 'medium',
+                  pattern: 'MM-dd-yyyy'
+                  
+                },
+                formatter: '.formatter.formatDate'
+            }" 
+            visible="{= ${viewModel>/editMode} ? true : false }"/>
           </HBox>
         </VBox>
       </HBox>
@@ -46,22 +67,61 @@
       <uxap:ObjectPageSection id="_IDGenObjectPageSection1" title="Home">
         <uxap:subSections>
           <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection1" title="Work Details">
-            <uxap:blocks>
               <ObjectStatus id="_IDGenObjectStatus5" title="Role" text="{Role}" />
-              <ObjectStatus id="_IDGenObjectStatus6" title="Start Date" text="{StartDate}" />
-            </uxap:blocks>
+              <ObjectStatus id="_IDGenObjectStatus6" title="Start Date" 
+              text="{
+                path: 'StartDate',
+                type: 'sap.ui.model.type.Date',
+                formatOptions: {
+                  style: 'medium',
+                  pattern: 'MM-dd-yyyy'
+                  
+                },
+                formatter: '.formatter.formatDate'
+              }" />
 
           </uxap:ObjectPageSubSection>
 
           <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection2" title="Personal Details">
-            <uxap:blocks>
+            <!-- <uxap:blocks>
               <ObjectStatus id="_IDGenObjectStatus7" title="Address" text="{Address}" />
               <ObjectStatus id="_IDGenObjectStatus8" title="City/State" text="{CityState}" />
               <ObjectStatus id="_IDGenObjectStatus9" title="Zip" text="{ZipCode}" />
 
               <ObjectStatus id="_IDGenObjectStatus10" title="Email" text="{Email}" />
               <ObjectStatus id="_IDGenObjectStatus11" title="Phone Number" text="{PhoneNumber}" />
-            </uxap:blocks>
+            </uxap:blocks> -->
+          <HBox>
+            <Label text="Address:" labelFor="_address" class="sapUiTinyMarginEnd"/>
+            <Input id="_address" value="{Address}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <Text text="{= ${viewModel>/editMode} ? '' : ${Address} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
+          </HBox>
+
+          <HBox>
+            <Label text="City / State:" labelFor="_cityState" class="sapUiTinyMarginEnd"/>
+            <Input id="_cityState" value="{CityState}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <Text text="{= ${viewModel>/editMode} ? '' : ${CityState} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
+          </HBox>
+
+          <HBox>
+            <Label text="Zip code:" labelFor="_zipCode" class="sapUiTinyMarginEnd"/>
+            <Input type="Number" id="_zipCode" value="{ZipCode}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <Text text="{= ${viewModel>/editMode} ? '' : ${ZipCode} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
+          </HBox>
+          
+
+          <HBox>
+            <Label text="Email:" labelFor="_email" class="sapUiTinyMarginEnd"/>
+            <Input type="Email" id="_email" value="{Email}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <Text text="{= ${viewModel>/editMode} ? '' : ${Email} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
+          </HBox>   
+
+          <HBox>
+            <Label text="Phone number:" labelFor="_phoneNumber" class="sapUiTinyMarginEnd"/>
+            <Input type="Tel" id="_phoneNumber" value="{PhoneNumber}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <Text text="{= ${viewModel>/editMode} ? '' : ${PhoneNumber} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
+          </HBox>
+
           </uxap:ObjectPageSubSection>
 
 
