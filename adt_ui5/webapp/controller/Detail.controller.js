@@ -60,16 +60,6 @@ sap.ui.define([
                 this.updateEntityInModel(editedData);
             },
 
-            // getEditedData: function () {
-            //     var dateToConvert = this.byId("_start").getValue();
-            //     var convertedDate = this.createJSONDate(dateToConvert);
-            //     return {
-            //         Department: this.byId("_department").getValue(),
-            //         Role: this.byId("_role").getValue(),
-            //         StartDate: convertedDate
-            //     };
-            // },
-
             getEditedData: function () {
                 var editedData = {};
 
@@ -80,30 +70,10 @@ sap.ui.define([
                 }, this);
 
                 var dateToConvert = this.byId("_StartDate").getValue();
-                editedData.StartDate = this.createJSONDate(dateToConvert);
+                var ticks = Date.parse(dateToConvert);
+                editedData.StartDate = "\/Date(" + ticks + ")\/";
 
                 return editedData;
-            },
-
-
-            createJSONDate: function (dateToConvert) {
-                // Split the dateToConvert string to extract the month, day, and year
-                var dateParts = dateToConvert.split("-");
-                if (dateParts.length === 3) {
-                    var year = parseInt(dateParts[2]);
-                    var month = parseInt(dateParts[0]) - 1;  // Months are zero-based in JavaScript
-                    var day = parseInt(dateParts[1]);
-
-                    // Create a Date object with the extracted parts
-                    var oDate = new Date(year, month, day);
-
-                    // Convert to UTC timestamp
-                    var ticks = oDate.getTime();
-                    return "\/Date(" + ticks + ")\/";
-                } else {
-                    console.error("Invalid date format:", dateToConvert);
-                    return null;
-                }
             },
 
 

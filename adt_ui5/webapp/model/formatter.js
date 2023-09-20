@@ -2,23 +2,46 @@ sap.ui.define([], function () {
     "use strict";
 
     return {
-       
-        formatDate: function (sStartDate) {
+
+        formatDateForText: function (sStartDate) {
             if (!sStartDate) {
                 return "";
             }
 
-            // Parse the date string in the format MM-DD-YYYY
-            var parts = sStartDate.split('-');
-            var month = parseInt(parts[0], 10) - 1; // Adjust month (0 - 11)
-            var day = parseInt(parts[1], 10);
-            var year = parseInt(parts[2], 10);
+            var oDate = new Date(Date.parse(sStartDate));
 
-            // Create a Date object
-            var oDate = new Date(year, month, day);
+            if (isNaN(oDate.getTime())) {
+                console.error("Invalid date format:", sStartDate);
+                return "";
+            }
 
-            var oDateFormat = sap.ui.core.format.DateFormat.getInstance({ pattern: "MM/dd/yyyy" });
-            return oDateFormat.format(oDate);
+            oDate.setDate(oDate.getDate() + 1);
+
+            var month = String(oDate.getMonth() + 1).padStart(2, "0");
+            var day = String(oDate.getDate()).padStart(2, "0");
+            var year = oDate.getFullYear();
+
+            return month + "/" + day + "/" + year;
+        },
+
+        formatDateForDatePicker: function (sStartDate) {
+            if (!sStartDate) {
+                return "";
+            }
+
+            var oDate = new Date(Date.parse(sStartDate));
+
+            if (isNaN(oDate.getTime())) {
+                console.error("Invalid date format:", sStartDate);
+                return "";
+            }
+
+            var month = String(oDate.getMonth() + 1).padStart(2, "0");
+            var day = String(oDate.getDate()).padStart(2, "0");
+            var year = oDate.getFullYear();
+
+            return month + "/" + day + "/" + year;
+        
         }
 
     };

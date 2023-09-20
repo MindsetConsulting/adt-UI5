@@ -39,10 +39,11 @@
                 type: 'sap.ui.model.type.Date',
                 formatOptions: {
                   style: 'medium',
-                  pattern: 'MM-dd-yyyy'
-                  
+                  pattern: 'MM-dd-yyyy',
+                  type: 'sap.ui.model.type.Date',
+                  formatOptions: {UTC: true}
                 },
-                formatter: '.formatter.formatDate'
+                formatter: '.formatter.formatDateForText'
               }"
               visible="{= ${viewModel>/editMode} ? false : true }"/>
             <DatePicker id="_StartDate" 
@@ -51,10 +52,11 @@
                 type: 'sap.ui.model.type.Date',
                 formatOptions: {
                   style: 'medium',
-                  pattern: 'MM-dd-yyyy'
+                  pattern: 'MM-dd-yyyy',
+                  UTC: true
                   
                 },
-                formatter: '.formatter.formatDate'
+                formatter: '.formatter.formatDateForDatePicker'
             }" 
             visible="{= ${viewModel>/editMode} ? true : false }"/>
           </HBox>
@@ -77,7 +79,7 @@
                   pattern: 'MM-dd-yyyy'
                   
                 },
-                formatter: '.formatter.formatDate'
+                formatter: '.formatter.formatDateForText'
               }" />
 
           </uxap:ObjectPageSubSection>
