@@ -46,9 +46,25 @@ sap.ui.define([
             },
 
             onSavePress: function () {
-                this.setEditMode(false);
+                var viewModel = this.getView().getModel("viewModel");
+
+                // Check if ZipCode and Email are in error state
+                var zipCodeInput = this.byId("_ZipCode");
+                var emailInput = this.byId("_Email");
+                var isZipCodeValid = zipCodeInput.getValueState() !== sap.ui.core.ValueState.Error;
+                var isEmailValid = emailInput.getValueState() !== sap.ui.core.ValueState.Error;
+
+                if (!isZipCodeValid || !isEmailValid) {
+                    // Display an error message
+                    MessageToast.show("Please correct the fields in red");
+                    return;
+                }
+
+                // Proceed with saving and updating the entity
+                viewModel.setProperty("/editMode", false);
                 this.updateEntity();
             },
+
 
             setEditMode: function (editMode) {
                 var viewModel = this.getView().getModel("viewModel");
