@@ -45,11 +45,6 @@ sap.ui.define([
                 viewModel.setProperty("/editMode", true);
             },
 
-            // onSavePress: function () {
-            //     var viewModel = this.getView().getModel("viewModel");
-            //     viewModel.setProperty("/editMode", false);
-            // },
-
             onSavePress: function () {
                 this.setEditMode(false);
                 this.updateEntity();
@@ -66,12 +61,41 @@ sap.ui.define([
             },
 
             getEditedData: function () {
+                var dateToConvert = this.byId("_start").getValue();
+                var convertedDate = this.createJSONDate(dateToConvert);
                 return {
                     Department: this.byId("_department").getValue(),
-                    Role: this.byId("_role").getValue()
-                    // StartDate: this.byId("_start").getValue()
+                    Role: this.byId("_role").getValue(),
+                    StartDate: convertedDate
                 };
             },
+
+            // createJSONDate: function (dateToConvert) {
+            //     var dateObject = new Date(dateToConvert); // Convert the string to a Date object
+            //     var ticks = dateObject.getTime();
+            //     return "\/Date(" + ticks + ")\/";
+            // },
+
+            createJSONDate: function (dateToConvert) {
+                // Split the dateToConvert string to extract the month, day, and year
+                var dateParts = dateToConvert.split("-");
+                if (dateParts.length === 3) {
+                    var year = parseInt(dateParts[2]);
+                    var month = parseInt(dateParts[0]) - 1;  // Months are zero-based in JavaScript
+                    var day = parseInt(dateParts[1]);
+
+                    // Create a Date object with the extracted parts
+                    var oDate = new Date(year, month, day);
+
+                    // Convert to UTC timestamp
+                    var ticks = oDate.getTime();
+                    return "\/Date(" + ticks + ")\/";
+                } else {
+                    console.error("Invalid date format:", dateToConvert);
+                    return null;
+                }
+            },
+
 
             updateEntityInModel: function (editedData) {
                 var oViewModel = this.getView().getModel("viewModel");

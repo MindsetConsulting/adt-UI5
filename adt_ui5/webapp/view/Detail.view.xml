@@ -83,14 +83,7 @@
           </uxap:ObjectPageSubSection>
 
           <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection2" title="Personal Details">
-            <!-- <uxap:blocks>
-              <ObjectStatus id="_IDGenObjectStatus7" title="Address" text="{Address}" />
-              <ObjectStatus id="_IDGenObjectStatus8" title="City/State" text="{CityState}" />
-              <ObjectStatus id="_IDGenObjectStatus9" title="Zip" text="{ZipCode}" />
-
-              <ObjectStatus id="_IDGenObjectStatus10" title="Email" text="{Email}" />
-              <ObjectStatus id="_IDGenObjectStatus11" title="Phone Number" text="{PhoneNumber}" />
-            </uxap:blocks> -->
+            
           <HBox>
             <Label text="Address:" labelFor="_address" class="sapUiTinyMarginEnd"/>
             <Input id="_address" value="{Address}" visible="{= ${viewModel>/editMode} ? true : false }"/>
