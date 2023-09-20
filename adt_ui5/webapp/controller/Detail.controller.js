@@ -93,6 +93,21 @@ sap.ui.define([
                 });
             },
 
+            onZipCodeChange: function (oEvent) {
+                var oInput = oEvent.getSource();
+                var sValue = oInput.getValue();
+                // Check if the value is not empty and is a 5-digit number
+                var isZipValid = /^[0-9]{5}$/.test(sValue);
+
+                if (!isZipValid) {
+                    oInput.setValueState(sap.ui.core.ValueState.Error);
+                    alert("Please enter a valid zip code");
+                } else {
+                    oInput.setValueState(sap.ui.core.ValueState.None);
+                }
+            },
+
+
 
             _bindView: function (sObjectPath) {
                 var oViewModel = this.getView().getModel("viewModel");

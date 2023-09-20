@@ -105,7 +105,7 @@
 
           <HBox>
             <Label text="Zip code:" labelFor="_zipCode" class="sapUiTinyMarginEnd"/>
-            <Input type="Number" id="_zipCode" value="{ZipCode}" visible="{= ${viewModel>/editMode} ? true : false }"/>
+            <Input type="Number" id="_zipCode" value="{ZipCode}" visible="{= ${viewModel>/editMode} ? true : false }" change="onZipCodeChange"/>
             <Text text="{= ${viewModel>/editMode} ? '' : ${ZipCode} }" visible="{= ${viewModel>/editMode} ? false : true }"/>
           </HBox>
           
