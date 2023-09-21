@@ -27,11 +27,30 @@ sap.ui.define([
                 this.getView().setModel(oViewModel, "viewModel");
 
                 this.getRouter().getRoute("Detail").attachPatternMatched(this._onObjectMatched, this);
+                // this.fetchEmployeeSkills();
             },
 
-            getEmployeeId: function () {
-                var match = sEmployeeId.match(/'([^']+)'/);
+            fetchEmployeeSkills: function () {
+                var oModel = this.getOwnerComponent().getModel();
+                // var sEmployeeId = this.getEmployeeId();
 
+                // Make an OData call to retrieve skills for the employee
+                oModel.read("/Employee(guid'" + sEmployeeId + "')/to_skill_rating", {
+                    success: function (oData) {
+                        // Update the binding of _empSkills table with the retrieved data
+                        var oTable = this.byId("_empSkills");
+                        var oBinding = oTable.getBinding("items");
+                        oBinding.getModel().setData(oData); // Assuming the oData contains the skills data
+                    }.bind(this),
+                    error: function () {
+                        // Handle error
+                        MessageToast.show("Error fetching skills for the employee");
+                    }
+                });
+            },
+
+            getEmployeeId: function (sObjectId) {
+                var match = sObjectId.match(/'([^']+)'/);
                 if (match && match[1]) {
                     var viewModel = this.getView().getModel("viewModel");
                     viewModel.setProperty("/employeeId", match[1]);
@@ -164,8 +183,7 @@ sap.ui.define([
             _onObjectMatched: function (oEvent) {
                 var sObjectId = oEvent.getParameter("arguments").employeeId;
                 this._bindView("/Employee" + sObjectId);
-                sEmployeeId = sObjectId;
-                this.getEmployeeId();
+                this.getEmployeeId(sObjectId);
             },
 
             onNavBack: function () {
