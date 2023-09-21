@@ -43,7 +43,8 @@
                             </VBox>
                             <VBox>
                                 <HBox visible="{= ${viewModel>editMode}}" justifyContent="End">
-                                    <Button type="Emphasized" text="Save" icon="sap-icon://save" press=".onSaveSkillPress" />
+                                    <Button type="Emphasized" text="Save" icon="sap-icon://save" press=".onSaveSkillPress" class="sapUiTinyMarginEnd"/>
+                                    <Button icon="sap-icon://decline" press=".onCancelSkillPress" />
                                 </HBox>
                                 <HBox visible="{= !${viewModel>editMode}}" justifyContent="End">
                                     <Button icon="sap-icon://edit" press=".onEditSkill" />

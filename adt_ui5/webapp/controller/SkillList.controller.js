@@ -2,9 +2,10 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/UIComponent",
-    "sap/m/MessageToast" 
-    
-], function (Controller, JSONModel, UIComponent, MessageToast) {
+    "sap/m/MessageToast",
+    "sap/m/Button",
+
+], function (Controller, JSONModel, UIComponent, MessageToast, Button) {
     "use strict";
     var controller, component;
 
@@ -76,6 +77,21 @@ sap.ui.define([
             }
         },
 
+        onCancelSkillPress: function (oEvent) {
+            // Handle declining a new skill (e.g., remove the new skill)
+            var oViewModel = this.getView().getModel("viewModel");
+            var aSkills = oViewModel.getProperty("/Skills");
+
+            // Find the skill with edit mode and remove it
+            var unsavedSkillIndex = aSkills.findIndex(function (skill) {
+                return skill.editMode === true;
+            });
+
+            if (unsavedSkillIndex !== -1) {
+                aSkills.splice(unsavedSkillIndex, 1); // Remove the unsaved skill
+                oViewModel.refresh(); // Refresh the binding to reflect the change
+            }
+        },
 
 
         onEditSkill: function (oEvent) {
@@ -122,7 +138,13 @@ sap.ui.define([
                 var oModel = this.getOwnerComponent().getModel();
 
                 if (isNewSkill) {
-                    // If it's a new skill, perform a create
+                    // Check if the skill name is empty
+                    if (!editedSkill.Name.trim()) {
+                        sap.m.MessageBox.alert("Please enter the name of the skill");
+                        return;
+                    }
+
+                    // If it's a new skill with a non empty string, perform a create
                     oModel.create("/Employee_Skills_CRUD", skillToSave, {
                         success: function () {
                             // Handle success
@@ -138,6 +160,11 @@ sap.ui.define([
                         }
                     });
                 } else {
+                    // Check if the skill name is empty
+                    if (!editedSkill.Name.trim()) {
+                        sap.m.MessageBox.alert("Please enter the name of the skill");
+                        return;
+                    }
                     // If it's an existing skill, perform an update
                     oModel.update("/Employee_Skills_CRUD(guid'" + editedSkill.SkillId + "')", skillToSave, {
                         success: function () {

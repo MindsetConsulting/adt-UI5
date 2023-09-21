@@ -127,8 +127,8 @@
       <uxap:ObjectPageSection id="_IDGenObjectPageSection2" title="Skills">
         <uxap:subSections>
           <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection4">
-            <!-- FIXME: Filter still not working, hardcoded or dynamic
-            if dynamic, should use {viewModel>/employeeId} or similar-->
+            <!-- FIXME: Filter still not working, hardcoded or dynamic.
+            If dynamic, I expect value1 should be {viewModel>/employeeId} or similar-->
             <Table id="_IDGenTable1" items="{
                       path: '/Employee_Skills_CRUD',
                       filters: [{ 
