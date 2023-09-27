@@ -28,7 +28,7 @@ sap.ui.define([
 
             // Fetch existing skills from OData service
             var oModel = this.getOwnerComponent().getModel();
-            oModel.read("/Employee_Skills_CRUD", {
+            oModel.read("/Employee_Skills", {
                 success: function (oData) {
                     var skills = oData.results.map(function (skill) {
                         return {

@@ -27,21 +27,92 @@ sap.ui.define([
                 this.getView().setModel(oViewModel, "viewModel");
 
                 this.getRouter().getRoute("Detail").attachPatternMatched(this._onObjectMatched, this);
-                // this.fetchEmployeeSkills();
             },
+
+            // fetchEmployeeSkills: function () {
+            //     var oModel = this.getOwnerComponent().getModel();
+
+            //     // Make an OData call to retrieve skills for the employee
+            //     oModel.read("/Employee?$filter=Id eq (guid'" + sEmployeeId + "')/to_skill_rating", {
+            //         success: function (oData) {
+            //             // Update the binding of _empSkills table with the retrieved data
+            //             var oTable = this.byId("_empSkills");
+            //             var oBinding = oTable.getBinding("items");
+            //             oBinding.getModel().setData(oData); // Assuming the oData contains the skills data
+            //         }.bind(this),
+            //         error: function () {
+            //             // Handle error
+            //             MessageToast.show("Error fetching skills for the employee");
+            //         }
+            //     });
+            // },
 
             fetchEmployeeSkills: function () {
                 var oModel = this.getOwnerComponent().getModel();
-                // var sEmployeeId = this.getEmployeeId();
+                var sEmployeeId = '185b6714-4112-11ee-be56-0242ac120002'; // Replace with your actual employee ID
+                
+                // Use createKey to form the correct URL for to_skill_rating
+                var sSkillRatingUrl = "/Employee(guid'" + sEmployeeId + "')";
+
+
+                // TODO: the below returns an object {__metadata: {…}, Id: '185b6714-4112-11ee-be56-0242ac120002', Name: 'PATTI SMITH', Department: 'POETRY', StartDate: Tue Sep 05 2023 19:00:00 GMT-0500 (Central Daylight Time), …} 
 
                 // Make an OData call to retrieve skills for the employee
-                oModel.read("/Employee(guid'" + sEmployeeId + "')/to_skill_rating", {
+                oModel.read(sSkillRatingUrl, {
                     success: function (oData) {
                         // Update the binding of _empSkills table with the retrieved data
-                        var oTable = this.byId("_empSkills");
-                        var oBinding = oTable.getBinding("items");
-                        oBinding.getModel().setData(oData); // Assuming the oData contains the skills data
-                    }.bind(this),
+                        // var oTable = this.byId("_empSkills");
+                        // var oBinding = oTable.getBinding("items");
+                        console.log('oData is:', oData)
+                        // oBinding.getModel().setData(oData); // Assuming the oData contains the skills data
+
+                        // *******// FIXME: does not work 
+                        // Access the deferred URI for to_skill_rating
+                        // var toSkillRatingURI = oData.to_skill_rating.__deferred.uri;
+                        // var toSkillRatingURI = "Employee(guid'185b6714-4112-11ee-be56-0242ac120002')/to_skill_rating";
+
+
+                        // Make a separate request to fetch the to_skill_rating data
+                        // oModel.read(toSkillRatingURI, {
+                        //     success: function (toSkillRatingData) {
+                        //         // Here, toSkillRatingData will contain the to_skill_rating data
+                        //         console.log("to_skill_rating data:", toSkillRatingData);
+                        //     },
+                        //     error: function () {
+                        //         // Handle error
+                        //         MessageToast.show("Error fetching to_skill_rating data");
+                        //     }
+                        // });
+
+                        // FIXME: does not work     
+                        // fetch(`https://S4HANA2022.MINDSETCONSULTING.COM:44301/sap/opu/odata/sap/ZASSOCIATE_DEV_EMP_API/Employee(guid'185b6714-4112-11ee-be56-0242ac120002')/to_skill_rating`, {
+                        //     method: 'GET', // or 'POST', 'PUT', 'DELETE', etc.
+                        //     headers: {
+                        //         'Content-Type': 'application/json', // adjust accordingly
+                        //         // Add any other headers you need
+                        //     },
+                        // })
+                        //     .then(response => {
+                        //         if (!response.ok) {
+                        //             throw new Error('Network response was not ok');
+                        //         }
+                        //         return response.json(); // or response.text() if expecting a different type of response
+                        //     })
+                        //     .then(data => {
+                        //         // Handle the data returned from the server
+                        //         console.log('Data:', data);
+                        //     })
+                        //     .catch(error => {
+                        //         // Handle errors
+                        //         console.error('Error:', error);
+                        //     });
+
+// *********
+
+                    }
+                        // .bind(this)
+                    ,
+
                     error: function () {
                         // Handle error
                         MessageToast.show("Error fetching skills for the employee");
@@ -49,11 +120,14 @@ sap.ui.define([
                 });
             },
 
+
             getEmployeeId: function (sObjectId) {
                 var match = sObjectId.match(/'([^']+)'/);
                 if (match && match[1]) {
-                    var viewModel = this.getView().getModel("viewModel");
-                    viewModel.setProperty("/employeeId", match[1]);
+                    // var viewModel = this.getView().getModel("viewModel");
+                    // viewModel.setProperty("/employeeId", match[1]);
+                    sEmployeeId = match[1]
+                    this.fetchEmployeeSkills();
                 } else {
                     return null;
                 }
@@ -115,10 +189,10 @@ sap.ui.define([
             updateEntityInModel: function (editedData) {
                 var oViewModel = this.getView().getModel("viewModel");
                 var oModel = this.getOwnerComponent().getModel();
-                var empId = oViewModel.getProperty("/employeeId");
+                var empId = sEmployeeId;
 
                 // Save the changes to the server
-                oModel.update("/Employee_CRUD(guid'" + empId + "')", editedData, {
+                oModel.update("/Employee(guid'" + empId + "')", editedData, {
                     success: function () {
                         // Handle success
                         MessageToast.show("Update successful");

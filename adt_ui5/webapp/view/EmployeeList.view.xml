@@ -11,7 +11,7 @@
 
         <semantic:content>
             <Table id="table" width="auto" mode="MultiSelect" 
-            items="{path: '/Employee_CRUD'}" 
+            items="{path: '/Employee'}" 
             selectionChange=".onSelectionChange" delete=".onDelete">
 
                 <headerToolbar>

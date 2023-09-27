@@ -118,7 +118,7 @@ sap.ui.define([
                 var oModel = this.getView().getModel();
 
                 // Create the new employee data
-                oModel.create("/Employee_CRUD", oNewEmployee, {
+                oModel.create("/Employee", oNewEmployee, {
                     success: function () {
                         // Handle successful creation
                         console.log('Employee added successfully');
