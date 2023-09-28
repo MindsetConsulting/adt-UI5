@@ -1,5 +1,5 @@
 # adt-UI5
-# Employee Skill Tracker App created using UI5 Web Components for React
+# Employee Skill Tracker App created using SAP UI5 and ABAP
 ## About the App
 
 This is a simple Employee/Skill Tracker application. The user should be able to add and delete a list of skills from a master list of skills, add and delete employees from a master list of employees, and view/edit an individual employees information on a separate employee detail page (accessed by clicking on a single employee from the master list of employees). The objectives here are to be able to perform simple CRUD operations on two sets of data as well as have both of those sets of data be able to interact with each other (e.g. be able to assign/remove skills from individual employees).
